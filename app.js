@@ -22,6 +22,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+/**
+ * @author : Aina Nary
+ */
+var searchRouter = require('./routes/search');
+app.use('/search', searchRouter);
+var categoryRouter = require('./routes/category');
+app.use('/category', categoryRouter);
+var actorRouter = require('./routes/actor');
+app.use('/actor', actorRouter);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
