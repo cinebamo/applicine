@@ -12,13 +12,11 @@ router.get('/home', function(req, res, next) {
   res.send('ok');
 });
 
-<<<<<<< Updated upstream
 /* Mathias ===> cinebat.dev/movie/$id en GET */
 router.get('/movie/:id', function(req, res, next) {
   res.send('ok ' + req.params.id);
 });
 
-=======
 
 /* 
 *@author isa 
@@ -30,5 +28,10 @@ router.post('/login', function(req, res, next) {
 });
 
 
->>>>>>> Stashed changes
+/* GET CGU page. */
+router.get('/cgu', function(req, res, next) {
+  res.render('cgu', {}); 
+});
+
+
 module.exports = router;
