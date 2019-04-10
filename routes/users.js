@@ -1,26 +1,23 @@
 var express = require('express');
 var router = express.Router();
-
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+// @author Maxime cinebat.dev/users/:id
+router.get('/:id', function(req, res, next) {
+  res.json('Votre compte est' + req.params.id); 
 });
 
-/* 
-*@author isa 
-*/
-/* POST users create account >>cinebat.dev/user*/
-router.post('/', function(req, res, next) {
-  res.send('le compte a bien été crée');
-});
 
-/* 
-*@author isa 
-*/
+
 /* PUT users update account >>cinebat.dev/user/$id	*/
 router.put('/', function(req, res, next) {
   // console.log(req.body.id);
   res.json('le compte a bien été modifié'+req.body.id);
+
+// @author Maxime cinebat.dev/users
+router.post('/', function(req, res, next) {
+  console.log(req.body);
+  res.json('hello' + req.body.name);
+
 });
 
 /* 
