@@ -54,10 +54,32 @@ router.get('/:id', function(req, res, next) {
 /**
 *@author isa 
 */
-/* PUT users update account >>cinebat.dev/user/$id	*/
-router.put('/', function(req, res, next) {
-  // console.log(req.body.id);
-  res.json('le compte a bien été modifié'+req.body.id);
+/* PUT users UPDATE account >>cinebat.dev/user/$id	*/
+  router.put('/', function(req, res, next) {
+    
+    var requiredProps = ['name','firstname', 'email', 'password','age'];
+    // je verifie qu'il y ai bien des données reçues en post
+    for(var i in requiredProps[i]) {
+      // si les données reçues sont indefinies répond que le champ est vide et coupe le script avec le return
+      if(typeof req.body[requiredProps[i]] == 'undefined'){
+        return res.send(requiredProps[i] + 'empty');
+      }
+    }
+    // si les données reçues ne sont pas indefinis alors tu les update dans la DB et tu affiche ok + toutes les données corespondant a l'id
+    DB.collection('users').updateOne({_id: ObjectId(req.body.id)},
+                                      {name:req.body.name},
+                                      {firstname: req.body.firstname},
+                                      {email: req.body.email},
+                                      {password: req.body.password},
+                                      {age: req.body.age}, function(err, result){
+    
+      if(err) throw err;
+        res.json({
+        result : 'Votre compte à bien été modifié',
+        id : result.upsertedId.toString()
+        });
+        console.log(result.upsertedId.toString());
+    });
 });
 /**
 *@author Maxime
