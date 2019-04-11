@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 var express = require('express');
 var router = express.Router();
 
@@ -22,7 +22,7 @@ router.delete('/', function (req,res,next){
 
 
 
-=======
+
 /*
 *@author ERRE
 */
@@ -39,5 +39,5 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
     res.json('POST Comments ERRE');
 });
->>>>>>> eb1a67b6940a129b36a0b51371e25925797e572d
+
 module.exports = router;
