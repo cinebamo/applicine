@@ -7,24 +7,23 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-
-router.get('/cgu', function(req, res, next) {
-  res.render('cgu', {});
-});
-
-
-
+/**
+ * @author Mathias
+ */
 /* Mathias ===> cinebat.dev/home en GET */
 router.get('/home', function(req, res, next) {
   res.send('ok');
 });
 
-/* Mathias ===> cinebat.dev/movie/$id en GET */
+/**
+ * @author Mathias
+ */
+/* ===> cinebat.dev/movie/$id en GET */
 router.get('/movie/:id', function(req, res, next) {
   res.send('ok ' + req.params.id);
 });
 
-/* 
+/**
 *@author isa 
 */
 /* users  login account  >>cinebat.dev/login */
