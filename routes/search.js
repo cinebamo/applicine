@@ -26,15 +26,12 @@ MongoClient.connect(url,
       var requiredProps = ['title_actor', 'category'];
       //Recherche utilisant le titre, la categorie et/ou acteur
 
-      // /!\ Les recherches actuels sont par titre exact /!\
-      var param_ok = false;
-
-      console.log('title_actor :' + req.query.title_actor);
-      console.log('category :' + req.query.category);
+      // console.log('title_actor :' + req.query.title_actor);
+      // console.log('category :' + req.query.category);
 
       if ((typeof req.query.title_actor == 'undefined') && (typeof req.query.category == 'undefined')) {
         console.log('Empty search');
-        return res.send('Error : empty search');
+        return res.send('Error : undefined search');
       }
 
       // Search si category
@@ -43,44 +40,46 @@ MongoClient.connect(url,
         //si on a un titre/acteur
         if (typeof req.query.title_actor != 'undefined') {
           // Chercher par titre
-          DB.collection('movies').find({ title: req.params.title_actor }).toArray(function (err, movies) {
+          DB.collection('movies').find({ title: new RegExp(req.query.title_actor),
+                                         category: req.query.category}).toArray(function (err, movies) {
             if (err) throw err;
             //si pas de resultat, chercher avec l'acteur
-            if (movies.length == 0) { // tester contain ?
-              DB.collection('movies').find({ actors: req.params.title_actor }).toArray(function (err, movies) {
+            if (movies.length == 0) { 
+              DB.collection('movies').find({ actors: new RegExp(req.query.title_actor),
+                                           category: req.query.category }).toArray(function (err, movies) {
                 if (err) throw err;
                 res.json(movies);
               });
             } else {
+              var search = req.query.title_actor;
+              console.log("titre trouve avec category" + new RegExp(search));
               res.json(movies);
             }
           });
-          // Sans titre/acteur, on recherche seulement avec la category
+
+        // Sans titre/acteur, on recherche seulement avec la category
         } else {
           DB.collection('movies').find({ category: req.query.category }).toArray(function (err, movies) {
             if (err) throw err;
-
-            //tester la longueur de la reponse
             res.json(movies);
           });
         }
 
-      // Search sans category
-      } else {
+      } else { // Search sans category
 
         // Chercher par titre
-        DB.collection('movies').find({ title: req.params.title_actor }).toArray(function (err, movies) {
+        DB.collection('movies').find({ title : new RegExp(req.query.title_actor)  }).toArray(function (err, movies) {
           if (err) throw err;
-          // console.log(movies);
-          // console.log((movies.length))
 
           //si pas de resultat, chercher avec l'acteur
-          if (movies.length == 0) { // tester si contain ?
-            DB.collection('movies').find({ actors: req.params.title_actor }).toArray(function (err, movies) {
+          if (movies.length == 0) { 
+            DB.collection('movies').find({ actors : new RegExp(req.query.title_actor)}).toArray(function (err, movies) {
               if (err) throw err;
+              //console.log("acteur trouve sans category");
               res.json(movies);
             });
-          } else {
+          } else { //reponse avec le titre
+            //console.log("titre trouve sans category");
             res.json(movies);
           }
         });

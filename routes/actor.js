@@ -18,7 +18,7 @@ MongoClient.connect(url,
 
     var DB = client.db('cinebamo');
 
-    console.log('je suis connecté (module actor)');
+    console.log('je suis connecté (module actor.js)');
 
 
     router.get('/:slug', function (req, res, next) {
