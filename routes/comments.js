@@ -21,29 +21,26 @@ var MongoClient = require('mongodb').MongoClient,
 /*PUT COMMENTS - Georges */
 /*Update*/
 
-router.put('/', function(req, res, next) {
+
+
+
+
+//
+router.put('/:id', function(req, res, next) {
+
   
-  var requiredProps = ['_id', 'name', 'firstname','email'];
   
-  for(var i in requiredProps[i]) {
-   
-    if(typeof req.body[requiredProps[i]] == 'undefined'){
-      return res.send(requiredProps[i] + 'empty');
-    }
-  }
-  
-  DB.collection('comments').updateOne({_id:ObjectId(req.body)},{name:req.body.name}, function(err, result){
+  DB.collection('comments').updateOne(
+
+    {_id:ObjectId(req.params.id)},
+    {$set:req.body}, 
+
+    function(err, result){
     
     if(err) throw err;
 
-// router.put('/', function(req, res, next) {
-//   res.json('Votre commentaire a bien été mis à jour' + req.body.id);
-// });
-
-
       res.json({
-        result : 'ok',
-        id : result.insertedId.toString()
+        result : 'ok'
       });
 
   });
@@ -52,17 +49,26 @@ router.put('/', function(req, res, next) {
 });
 //
 /*Delete*/
-router.delete('/', function (req,res,next){
-    res.json('votre commenraire a bien été supprimé' + req.body.id);
-});
 
+router.delete('/:id', function(req, res, next) {
+  
+    DB.collection('comments').deleteOne({_id: ObjectId(req.params.id)},function(err, comment){
+      
+      if(err) throw err;
+
+      res.send("Ce commentaire a été supprimé :-(");
+      
+    });
+  
+
+});
 /**
 *@author ERRE
 */
 /* GET comments by Id. */
 router.get('/:id', function(req, res, next) {
 
-  DB.collection('comments').findOne({_id: ObjectId(req.params.id)},function(err, users){
+  DB.collection('comments').findOne({_id: ObjectId(req.params.id)},function(err, comment){
     if(err) throw err;
 
       console.log(comment);
@@ -89,7 +95,7 @@ router.post('/', function(req, res, next) {
     
     if(err) throw err;
 
-    console.log(comment);
+    console.log(result);
 
       res.json({
         result : 'ok',
