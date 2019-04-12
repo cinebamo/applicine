@@ -19,12 +19,9 @@ var MongoClient = require('mongodb').MongoClient,
 */
 /* GET users listing. exemple pour obtenir tous les users*/
   router.get('/', function(req, res, next) {
-
     DB.collection('users').find({}).toArray(function(err, users){
         if(err) throw err;
-    
-          console.log(users);
-    
+          // console.log(users);
           res.json(users);
         });
      
@@ -53,21 +50,19 @@ router.get('/:id', function(req, res, next) {
 */
 /* PUT users UPDATE account >>cinebat.dev/user/$id	*/
   router.put('/:id', function(req, res, next) {
-    
-    // si les données reçues ne sont pas indefinis alors tu les update dans la DB et tu affiche ok + toutes les données corespondant a l'id
+    //  update dans la DB ou id = params id et tu affiche ok
     DB.collection('users').updateOne(
         {_id: ObjectId(req.params.id)},
               {$set:req.body},  
         function(err, result){
           if(err) throw err;
-          
             res.json({
-            result : 'Votre compte à bien été modifié',
-            
+            result : 'Votre compte à bien été modifié'
             });
             console.log(res.body);
         });
-});
+  });
+
 /**
 *@author Maxime
 */
@@ -101,18 +96,13 @@ router.post('/', function(req, res, next) {
 *@author isa 
 */
 /* DELETE users delete account  >>cinebat.dev/user/$id */
-router.delete('/:id', function(req, res, next) {
-  // console.log(req.body.id);
+  router.delete('/:id', function(req, res, next) {
     // recupere lutilisateur dont lid est passe en parametre dans la db
     DB.collection('users').deleteOne({_id: ObjectId(req.params.id)},function(err, user){
-      // s'il n'y a pas d'erreur
       if(err) throw err;
-
       res.send('le compte a bien été supprimé');
-      
     });
-  
+  });
 
-});
 });
 module.exports = router;
