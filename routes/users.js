@@ -88,7 +88,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
   
   var requiredProps = ['name','firstname', 'email', 'password','age'];
-  // je verifie qu'il y ai bien des données reçues en post
+  // je verifie qu'il y ai bien des données reçues en post.
   for(var i in requiredProps[i]) {
     // si les données reçue est indefinie répond que le champ est vide et coupe le script avec le return
     if(typeof req.body[requiredProps[i]] == 'undefined'){
