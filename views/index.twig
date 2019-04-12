@@ -1,24 +1,18 @@
 {% extends 'layout.twig' %}
 
 {% block body %}
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+    <header>
+        <select id="categs">
+            <option value="" selected>Selectionnez</option>
+            <option value="fiction">Science Fiction</option>
+            <option value="comedy">Comedie</option>
+            <option value="child">Enfant</option>
+        </select>
+    </header>
 
-  <script>
-    $('#createAccount').on(submit,function(evt){
-        evt.stopPropagation();
-        evt.preventDefault();
-        var data = {};
-        $(this).serializeArray().map(function(x){
-          data[x.name] = x.value;
-        });
-        $.ajax({
-          url: $(this).attr('action'),
-          method: $(this).attr('method'),
-          data: data
-        }).done(function(res){
-          console.log(res);
-        });
-  });
-  </script>
+    <div id="home" class="page"></div>
+    <div id="movies" class="page"></div>
+    <div id="movie" class="page"></div>
+
+<script src="/javascript/app.js"></script>
 {% endblock %}
