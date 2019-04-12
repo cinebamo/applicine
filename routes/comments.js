@@ -19,16 +19,22 @@ var MongoClient = require('mongodb').MongoClient,
 *@author Georges
 */
 /*PUT COMMENTS - Georges */
+/*Récuperer tout les Comments*/
+router.get('/', function(req, res, next) {
+
+  DB.collection('comments').find({}).toArray(function(err, comm){
+      if(err) throw err;
+  
+        console.log(comm);
+  
+        res.json(comm);
+      });
+   
+  });
+
 /*Update*/
 
-
-
-
-
-//
 router.put('/:id', function(req, res, next) {
-
-  
   
   DB.collection('comments').updateOne(
 
@@ -47,7 +53,7 @@ router.put('/:id', function(req, res, next) {
 
 
 });
-//
+
 /*Delete*/
 
 router.delete('/:id', function(req, res, next) {
@@ -59,7 +65,7 @@ router.delete('/:id', function(req, res, next) {
       res.send("Ce commentaire a été supprimé :-(");
       
     });
-  
+
 
 });
 /**
@@ -69,14 +75,7 @@ router.delete('/:id', function(req, res, next) {
 router.get('/:id', function(req, res, next) {
 
   DB.collection('comments').findOne({_id: ObjectId(req.params.id)},function(err, comment){
-<<<<<<< HEAD
-    if(err) throw err;
-
-      console.log(comment);
-
-=======
       if(err) throw err;
->>>>>>> bb6fce5a37fae0ddc305b9f40be02ecebe366984
       res.json(comment);
     });
     // res.json('GET Comments by Id' + req.params.id);
