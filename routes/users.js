@@ -87,7 +87,7 @@ router.get('/:id', function(req, res, next) {
 // @author Maxime cinebat.dev/users
 router.post('/', function(req, res, next) {
   
-  var requiredProps = ['name', 'email', 'password'];
+  var requiredProps = ['name','firstname', 'email', 'password','age'];
   // je verifie qu'il y ai bien des données reçues en post
   for(var i in requiredProps[i]) {
     // si les données reçue est indefinie répond que le champ est vide et coupe le script avec le return
