@@ -3,4 +3,22 @@
 {% block body %}
   <h1>{{title}}</h1>
   <p>Welcome to {{title}}</p>
+
+  <script>
+    $('#createAccount').on(submit,function(evt){
+        evt.stopPropagation();
+        evt.preventDefault();
+        var data = {};
+        $(this).serializeArray().map(function(x){
+          data[x.name] = x.value;
+        });
+        $.ajax({
+          url: $(this).attr('action'),
+          method: $(this).attr('method'),
+          data: data
+        }).done(function(res){
+          console.log(res);
+        });
+  });
+  </script>
 {% endblock %}
