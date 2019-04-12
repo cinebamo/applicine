@@ -33,17 +33,17 @@ router.get('/home', function(req, res, next) {
   });
 });
 
-/**
- * @author Mathias
- */
-/* ===> cinebat.dev/movies/$id en GET */
-router.get('/movies/:id', function(req, res, movie) {
-  DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, user){
-    if(err) throw err;
-    // Apres obtention de l'API, changez avec id !
-    res.json({result: "ok"});
-  });
-});
+// /**
+//  * @author Mathias
+//  */
+// /* ===> cinebat.dev/movies/$id en GET */
+// router.get('/movies/:id', function(req, res, movie) {
+//   DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, user){
+//     if(err) throw err;
+//     // Apres obtention de l'API, changez avec id !
+//     res.json({result: "ok"});
+//   });
+// });
 
 /**
 *@author isa

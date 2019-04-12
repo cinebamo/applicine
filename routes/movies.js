@@ -17,13 +17,14 @@ var MongoClient = require('mongodb').MongoClient,
 
       console.log('je suis connecté (Module Movies)');
 
-router.get('/movies/:id', function(req, res, movie) {
+router.get('/:id', function(req, res, next) {
   DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, movie){
   if(err) throw err;
   // Apres obtention de l'API, changez avec id !
-  res.json({result: "ok"});
+  res.json(movie);
   });
 });
 
 
 });
+module.exports = router;
