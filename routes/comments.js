@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 // declaration des variables qui contiennent la route vers mongodb et lurl pour ma connexion
 var MongoClient = require('mongodb').MongoClient,
-  //url= "mongodb://localhost:27017/cinebamo";
-// declaration de ObjectId qui appartient a mongodb donc le signaler ainsi a nodejs
-    ObjectId = require('mongodb').ObjectId,
+    ObjectId = require('mongodb').ObjectId,// declaration de ObjectId qui appartient a mongodb donc le signaler ainsi a nodejs
     url= "mongodb://localhost:27017/cinebamo";
     
  // connexion a la db cette fonction requiert 3 parametres: une url, un objet et une function de callback  
@@ -15,11 +13,7 @@ var MongoClient = require('mongodb').MongoClient,
   
         var DB = client.db('cinebamo');
   
-        console.log('je suis connecté');
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
+        console.log('je suis connecté (module comments)');
 
 /**
 *@author Georges
@@ -27,8 +21,6 @@ var MongoClient = require('mongodb').MongoClient,
 /*PUT COMMENTS - Georges */
 /*Update*/
 
-
-//
 router.put('/', function(req, res, next) {
   
   var requiredProps = ['_id', 'name', 'firstname','email'];

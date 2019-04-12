@@ -2,11 +2,8 @@ var express = require('express');
 var router = express.Router();
 // declaration des variables qui contiennent la route vers mongodb et lurl pour ma connexion
 var MongoClient = require('mongodb').MongoClient,
-  url= "mongodb://localhost:27017/cinebamo";
-// declaration de ObjectId qui appartient a mongodb donc le signaler ainsi a nodejs
-var ObjectId = require('mongodb').ObjectId,
-  url= "mongodb://localhost:27017/cinebamo";
-
+    ObjectId = require('mongodb').ObjectId,// declaration de ObjectId qui appartient a mongodb donc le signaler ainsi a nodejs
+    url = "mongodb://localhost:27017/cinebamo";
   // connexion a la db cette fonction requiert 3 parametres: une url, un objet et une function de callback
   MongoClient.connect(url,
     {useNewUrlParser:true},
