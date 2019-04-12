@@ -32,7 +32,8 @@ router.put('/', function(req, res, next) {
     }
   }
   
-  DB.collection('comments').updateOne({_id:ObjectId(req.body)},{name:req.body.name}, function(err, result){
+    DB.collection('comments').updateOne({_id:ObjectId(req.body)},
+    {name:req.body.name}, function(err, result){
     
     if(err) throw err;
 
@@ -59,20 +60,19 @@ router.delete('/', function (req,res,next){
 /**
 *@author ERRE
 */
-/* GET comments by Id. */
+/* GET Comment by Id. */
 router.get('/:id', function(req, res, next) {
 
-  DB.collection('comments').findOne({_id: ObjectId(req.params.id)},function(err, users){
-    if(err) throw err;
-
-      console.log(comment);
-
+  DB.collection('comments').findOne({_id: ObjectId(req.params.id)},function(err, comment){
+      if(err) throw err;
       res.json(comment);
     });
-
     // res.json('GET Comments by Id' + req.params.id);
 });
 
+/**
+ * *@author ERRE
+ */
 /* POST  Create Comment. */
 router.post('/', function(req, res, next) {
 
@@ -89,17 +89,15 @@ router.post('/', function(req, res, next) {
     
     if(err) throw err;
 
-    console.log(comment);
-
-      res.json({
-        result : 'ok',
+        res.json({
+        result : 'Commentaire inséré',
         id : result.insertedId.toString()
-    // res.json('POST Comments ERRE');
+    
+      });
+console.log(res.json);
     });
 
   });
-
-});
 
 });
 
