@@ -65,20 +65,26 @@ router.delete('/:id', function(req, res, next) {
 /**
 *@author ERRE
 */
-/* GET comments by Id. */
+/* GET Comment by Id. */
 router.get('/:id', function(req, res, next) {
 
   DB.collection('comments').findOne({_id: ObjectId(req.params.id)},function(err, comment){
+<<<<<<< HEAD
     if(err) throw err;
 
       console.log(comment);
 
+=======
+      if(err) throw err;
+>>>>>>> bb6fce5a37fae0ddc305b9f40be02ecebe366984
       res.json(comment);
     });
-
     // res.json('GET Comments by Id' + req.params.id);
 });
 
+/**
+ * *@author ERRE
+ */
 /* POST  Create Comment. */
 router.post('/', function(req, res, next) {
 
@@ -95,17 +101,15 @@ router.post('/', function(req, res, next) {
     
     if(err) throw err;
 
-    console.log(result);
-
-      res.json({
-        result : 'ok',
+        res.json({
+        result : 'Commentaire inséré',
         id : result.insertedId.toString()
-    // res.json('POST Comments ERRE');
+    
+      });
+console.log(res.json);
     });
 
   });
-
-});
 
 });
 
