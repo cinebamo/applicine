@@ -5,8 +5,8 @@ var router = express.Router();
 var MongoClient = require('mongodb').MongoClient,
   url= "mongodb://localhost:27017/cinebamo",
   ObjectId = require('mongodb').ObjectId;// declaration de ObjectId qui appartient a mongodb donc le signaler ainsi a nodejs
- 
-  
+
+
 
   MongoClient.connect(url,
     {useNewUrlParser:true},
@@ -27,19 +27,26 @@ router.get('/', function(req, res, next) {
  */
 /* Mathias ===> cinebat.dev/home en GET */
 router.get('/home', function(req, res, next) {
-  res.send('ok');
+  DB.collection('categories').find({}).toArray(function(err,category){
+    if(err) throw err;
+    res.json({result: "ok"});
+  });
 });
 
 /**
  * @author Mathias
  */
-/* ===> cinebat.dev/movie/$id en GET */
-router.get('/movie/:id', function(req, res, next) {
-  res.send('ok ' + req.params.id);
+/* ===> cinebat.dev/movies/$id en GET */
+router.get('/movies/:id', function(req, res, movie) {
+  DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, user){
+    if(err) throw err;
+    // Apres obtention de l'API, changez avec id !
+    res.json({result: "ok"});
+  });
 });
 
 /**
-*@author isa 
+*@author isa
 */
 /* users  login account  >>cinebat.dev/login */
 router.post('/login', function(req, res, next) {
@@ -51,7 +58,7 @@ router.post('/login', function(req, res, next) {
     }
   }
   DB.collection('users').insertOne(req.body, function(err, result){
-    
+
     if(err) throw err;
 
       res.json({
@@ -67,7 +74,7 @@ router.post('/login', function(req, res, next) {
 
 /* GET CGU page. */
 router.get('/cgu', function(req, res, next) {
-  res.render('cgu', {}); 
+  res.render('cgu', {});
 });
 });
 module.exports = router;
