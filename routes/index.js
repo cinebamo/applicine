@@ -50,7 +50,7 @@ router.get('/movies/:id', function(req, res, movie) {
 });
 
 /**
-*@author isa
+*@author isa et éric
 */
 /* users  login account  >>cinebat.dev/login */
 router.post('/login', function(req, res, next) {
@@ -65,10 +65,20 @@ router.post('/login', function(req, res, next) {
 
     if(err) throw err;
 
+    if(user && user._id) {
+      // set cookie avec uniqValue
+      connectedUsers.set(user._id.toString(), user) ;
+      res.json({
+        result : 'ok',
+        message : 'connection reussie'
+      });
+    } else {
+      res.json({
+        result : 'nok',
+        message : 'connection ratée'
+      });
+    }
     
-    // set cookie avec uniqValue
-    connectedUsers.set(user._id.toString(), user) ;
-//      res.json(user);
   });
 
 

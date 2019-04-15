@@ -64,18 +64,25 @@ $('#btnLogin').on('click', function(){
 
 // au click me connecter après remplissage des inputs user/password
 
-  $('#login').on('click', function(){
-
-   
+  $('#loginForm').on('submit', function(event){
+    console.log('là login');
+    event.preventDefault();
+    var data = {} ;
+    $('#loginForm [name]').map(function(i, x){
+      data[x.name] = x.value
+    });
+    console.log(data);
       $.ajax({
         url: '/login',
         method: 'POST',
-        data: $('#loginForm').serialize()
-      }).done(function(res, user){
+        dataType: 'json',
+        headers : {"content-type" : "application/json"},
+        data: JSON.stringify(data)
+      }).done(function(res){
         console.log(res);
         $('#loginSection').hide();
         $('#userLog').show();
-        $('.jumbotron-heading').append(res.user.firstname);
+//        $('.jumbotron-heading').append(users.firstname);
 
       });
   });   
