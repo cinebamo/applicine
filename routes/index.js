@@ -26,24 +26,26 @@ router.get('/', function(req, res, next) {
  * @author Mathias
  */
 /* Mathias ===> cinebat.dev/home en GET */
-// router.get('/home', function(req, res, next) {
-//   DB.collection('categories').find({}).toArray(function(err,category){
-//     if(err) throw err;
-//     res.json({result: "ok"});
-//   });
-// });
+router.get('/home', function(req, res, next) {
+  DB.collection('categories').find({}).toArray(function(err,category){
+    if(err) throw err;
+    // res.json({result: "ok"});
+    res.render('home', {});
+  });
+});
 
-// /**
-//  * @author Mathias
-//  */
-// /* ===> cinebat.dev/movies/$id en GET */
-// router.get('/movies/:id', function(req, res, movie) {
-//   DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, user){
-//     if(err) throw err;
-//     // Apres obtention de l'API, changez avec id !
-//     res.json({result: "ok"});
-//   });
-// });
+/**
+ * @author Mathias
+ */
+/* ===> cinebat.dev/movies/$id en GET */
+router.get('/movies/:id', function(req, res, movie) {
+  DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, user){
+    if(err) throw err;
+    // Apres obtention de l'API, changez avec id !
+    res.json({result: "ok"});
+    // res.render('film', {});
+  });
+});
 
 /**
 *@author isa
@@ -78,9 +80,9 @@ router.get('/cgu', function(req, res, next) {
 });
 
 /* GET accueil page. */
-router.get('/home', function(req, res, next) {
-  res.render('home', {});
-});
+// router.get('/home', function(req, res, next) {
+//   res.render('home', {});
+// });
 /* GET film page. */
 router.get('/film', function(req, res, next) {
   res.render('film', {});

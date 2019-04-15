@@ -26,12 +26,13 @@ MongoClient.connect(url,
       var requiredProps = ['title_actor', 'category'];
       //Recherche utilisant le titre, la categorie et/ou acteur
 
-      // console.log('title_actor :' + req.query.title_actor);
-      // console.log('category :' + req.query.category);
+      console.log('title_actor :' + req.query.title_actor);
+      console.log('category :' + req.query.category);
 
-      if ((typeof req.query.title_actor == 'undefined') && (typeof req.query.category == 'undefined')) {
+      if (((typeof req.query.title_actor == 'undefined')|| (req.query.title_actor.length == 0)) && 
+          ((typeof req.query.category    == 'undefined')|| (req.query.category.length == 0))) {
         console.log('Empty search');
-        return res.send('Error : undefined search');
+        return res.send('Error : empty search');
       }
 
       // Search si category
@@ -57,7 +58,7 @@ MongoClient.connect(url,
             }
           });
 
-        // Sans titre/acteur, on recherche seulement avec la category
+        // Si pas de titre/acteur, on recherche seulement avec la category
         } else {
           DB.collection('movies').find({ category: req.query.category }).toArray(function (err, movies) {
             if (err) throw err;
@@ -65,7 +66,8 @@ MongoClient.connect(url,
           });
         }
 
-      } else { // Search sans category
+      // Search sans category  
+      } else { 
 
         // Chercher par titre
         DB.collection('movies').find({ title : new RegExp(req.query.title_actor)  }).toArray(function (err, movies) {

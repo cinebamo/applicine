@@ -11,7 +11,33 @@ $('#categs').on('change',function(evt){
         res.forEach(function(movie) {
           $('#movies').append('<div><div class="title">'+movie.title+'</div></div>')
         })
-      });
-      
-      
+      });   
 });
+
+
+/**
+ * @author
+ */
+
+
+
+
+
+
+ /**
+ * @author
+ */
+
+
+ 
+
+
+
+
+
+ /**
+ * @author
+ */
+
+
+ 

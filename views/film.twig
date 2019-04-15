@@ -7,43 +7,7 @@
             /* ici je rentre ce que je veux inserer */
 {% block body %}
 
-    <header>
-    <!-- navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <img src="/images/logo_cinebamo.png" alt="logo de l'entreprise Cinebamo" width="50px" height="50px">
-            <a class="navbar-brand" href="#"></i>CineBat</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li id="categs" class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Catégories
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Science Fiction</a>
-                    <a class="dropdown-item" href="#">Thriller</a>
-                    <a class="dropdown-item" href="#">Horreur</a>
-                    <a class="dropdown-item" href="#">Comédie</a>
-                    <a class="dropdown-item" href="#">Enfant</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Suggestions</a>
-                  </div>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Titre du film ou acteurs" aria-label="Search">
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
-              </form>
-            </div>
-          </nav>
-    </header>
+
 <main class="d-flex flex-column"></main>
 <!-- pour la présentation rapide du site -->
     <section class="jumbotron text-center">
@@ -175,10 +139,6 @@
       </form>
     </section>
 </main>
-<footer class="text-center">
-        <small class="text-muted"><a href="./cgu.twig" class="text-danger">Mention légales</a></small>
-        <small class="text-muted">Copy Right 2019 &copy; Les BBcodeurs</small>
-</footer>
 
 <script src="/javascript/app.js"></script>
 {% endblock %}
