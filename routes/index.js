@@ -26,12 +26,12 @@ router.get('/', function(req, res, next) {
  * @author Mathias
  */
 /* Mathias ===> cinebat.dev/home en GET */
-router.get('/home', function(req, res, next) {
-  DB.collection('categories').find({}).toArray(function(err,category){
-    if(err) throw err;
-    res.json({result: "ok"});
-  });
-});
+// router.get('/home', function(req, res, next) {
+//   DB.collection('categories').find({}).toArray(function(err,category){
+//     if(err) throw err;
+//     res.json({result: "ok"});
+//   });
+// });
 
 // /**
 //  * @author Mathias
@@ -76,5 +76,15 @@ router.post('/login', function(req, res, next) {
 router.get('/cgu', function(req, res, next) {
   res.render('cgu', {});
 });
+
+/* GET accueil page. */
+router.get('/home', function(req, res, next) {
+  res.render('home', {});
+});
+/* GET film page. */
+router.get('/film', function(req, res, next) {
+  res.render('film', {});
+});
+
 });
 module.exports = router;

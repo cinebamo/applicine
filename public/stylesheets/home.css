@@ -1,0 +1,92 @@
+/* ////////////////////////////////////////////// */
+        /* //style mobileFirst page home// */
+/* ////////////////////////////////////////////// */
+/* style general */
+body{
+    padding: 0;
+    background-image: radial-gradient(circle, #cc0000, #bd0001, #af0002, #a00003, #920002, #920002, #920002, #920002, #a00003, #af0002, #bd0001, #cc0000);
+    font-family: 'Arvo', serif;
+}
+
+main{
+    padding: 10px;
+    background-image: linear-gradient(to bottom, #cc0000, #d50000, #df0000, #e80000, #f20000, #eb0001, #e50002, #de0003, #c50004, #ad0004, #960003, #7f0000);
+}
+
+section{
+    padding: 20px;
+}
+
+footer{
+    padding-top: 20px; padding-bottom:20px;
+    background-color: rgba(0,0,0,0.8);
+}
+/* pour les background gradiant black & white */
+.bg-grad-bkw{
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(59,59,59,0.5), rgba(119,119,119,0.5), rgba(185,185,185,0.5), #ffffff);
+}
+/* style général de la police */
+h1{
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+h2{
+    font-size: 2rem;
+    font-weight: 700;
+}
+h3,
+p{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+/* pour le menu */
+.dropdown-item:hover{
+    color: #cc0000;
+}
+
+/* ////////////////////////////////////////////// */
+        /* //style mobileFirst page home// */
+/* ////////////////////////////////////////////// */
+
+/* pour le background du jumbotron */
+.jumbotron{
+background-color: rgba(0,0,0,0.8);
+}
+
+/* pour le background des cards */
+#new-movie .album{
+    background-image: linear-gradient(to bottom, #cc0000, #d50000, #df0000, #e80000, #f20000, #eb0001, #e50002, #de0003, #c50004, #ad0004, #960003, #7f0000);
+}
+.card-body{
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(59,59,59,0.8), rgba(119,119,119,0.8), rgba(185,185,185,0.8), #ffffff);
+}
+/* pour les etoiles sous les bandes-annonces */
+.fa-star{
+    padding: 5px;
+}
+.fa-star:nth-of-type(-n+4){
+   color: #FCEE14;
+}
+
+/* pour le background du formulaire d inscription */
+#subscrib form{
+    padding: 5px;
+    border-radius: 5px;
+}
+#subscrib label{
+    color: #fff;
+}
+
+/* ////////////////////////////////////////////// */
+        /* //style mobileFirst page film// */
+/* ////////////////////////////////////////////// */
+
+#one-movie .jumbotron{
+    background-image: linear-gradient(to top, rgba(0,0,0,0.3), rgba(59,59,59,0.5), rgba(119,119,119,0.8), rgba(185,185,185,0.8), #ffffff);
+}
+
+#one-movie .space-in{
+    background-image: linear-gradient(to bottom, #ffffff, #d9c3dc, #c584a4, #ad4559, #7f0000);
+}

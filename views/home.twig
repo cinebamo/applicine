@@ -1,0 +1,164 @@
+/** 
+*@author isa 
+*/
+/* je defini que mon script va s integrer dans le fichier layout.twig grace a extends*/
+{% extends 'layout.twig' %}
+/* je defini lendroit ou va sinserer mon script html avec block body*/
+            /* ici je rentre ce que je veux inserer */
+{% block body %}
+
+    <header>
+    <!-- navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <img src="/images/logo_cinebamo.png" alt="logo de l'entreprise Cinebamo" width="50px" height="50px">
+            <a class="navbar-brand" href="#"></i>CineBat</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li id="categs" class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Catégories
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Science Fiction</a>
+                    <a class="dropdown-item" href="#">Thriller</a>
+                    <a class="dropdown-item" href="#">Horreur</a>
+                    <a class="dropdown-item" href="#">Comédie</a>
+                    <a class="dropdown-item" href="#">Enfant</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Suggestions</a>
+                  </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Titre du film ou acteurs" aria-label="Search">
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
+              </form>
+            </div>
+          </nav>
+    </header>
+<main class="d-flex flex-column"></main>
+<!-- pour la présentation rapide du site -->
+    <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading text-danger">Bienvenue</h1>
+          <p class="lead text-muted">Recherchez votre film depuis notre menu de navigation ou consultez les sorties de la semaine ci-dessous.<br />
+              Inscrivez-vous pour laisser vos commentaires et notation.
+          </p>
+          <p>
+            <a href="#" class="btn btn-outline-danger my-2">S'inscrire</a>
+            <a href="#" class="btn btn-secondary btn-outline-danger my-2">Se connecter</a>
+          </p>
+          <h2 class="lead text-danger">Cinebamo, l'appli qu'il vous faut! </h2>
+          <p class="lead text-muted">Retrouvez nos services sur l'application mobile Cinebamo, 
+              pour être toujours informé des dernières sorties cinématographiques.
+        </p>
+        <p><a href="#" class="btn btn-outline-danger my-2">Télécharger l'appliMobile</a></p>
+        </div>
+
+    </section>
+<!-- modele de carte pour faire apparaitre les sorties de la semaine -->
+    <section id="new-movie">
+    <div class="album py-5 bg-light bg-grad-bkw" >
+        <div class="container">
+    
+            <div class="row">
+                <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <video class="bd-placeholder-img card-img-top" width="100" height="225" controls="controls" poster="images/.png">
+                        <source src="" type="video/mp4" />
+                        <source src="e.webm" type="video/webm" />
+                        <source src="e.ogv" type="video/ogg" />
+                        Ici l'alternative à la vidéo : .
+                    </video>
+                <div class="card-body">
+                        <a href="#" class="text-danger"><h3>Title <span class="badge badge-secondary">New</span></h3></a>
+                    <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-danger">Voir</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger">Commenter</button>
+                    </div>
+                    <small class="text-muted">date</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- pour la pub -->
+<section>
+        <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+              </div>
+</section>
+<!-- pour le login -->
+<section id="login" class="bg-grad-bkw">
+    <form class="form-inline">
+            <div class="form-group mb-2 pl-1">
+              <label for="inputEmail" class="sr-only">Email</label>
+              <input type="text" class="form-control" id="inputEmail" value="email@example.com" placeholder="Email">
+            </div>
+            <div class="form-group mb-2 pl-1">
+              <label for="inputPassword2" class="sr-only">Mot de passe</label>
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Mot de passe">
+            </div>
+            <div class="form-group mb-2 pl-1">
+            <button type="submit" class="btn btn-outline-danger">Me connecter</button>
+        </div>
+        </form>
+        </section>
+<!-- pour l'inscription -->
+<section id="subscrib" class="bg-grad-bkw">
+    <h3 class="text-white">Vous devez avoir un compte pour donner votre avis<br />Pour vous inscrire, veuillez compléter le formulaire ci-après:</h3>
+    <form><div class="form-group">
+            <label for="inputName">Nom:</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Baptiste">
+          </div>
+          <div class="form-group">
+            <label for="inputFirstname">Prénom:</label>
+            <input type="text" class="form-control" id="inputFirstname" placeholder="Moreau">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputAge">Age:</label>
+              <input type="text" class="form-control" id="inputAge" placeholder="Majeur">
+            </div>
+          </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email:</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email@cinebamo.fr">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password:</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="*****">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              News letter
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn  btn-outline-danger">M'inscrire</button>
+      </form>
+    </section>
+</main>
+<footer class="text-center">
+        <small class="text-muted"><a href="./cgu.twig" class="text-danger">Mention légales</a></small>
+        <small class="text-muted">Copy Right 2019 &copy; Les BBcodeurs</small>
+</footer>
+
+<script src="/javascript/app.js"></script>
+{% endblock %}
+        /* je defini lendroit ou va sarreter mon script html avec endblock */
