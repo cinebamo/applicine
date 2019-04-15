@@ -4,6 +4,8 @@
 
 var express = require('express');
 var router = express.Router();
+var connectedUsers = {} ;
+
 // declaration des variables qui contiennent la route vers mongodb et lurl pour ma connexion
 var MongoClient = require('mongodb').MongoClient,
   url = "mongodb://localhost:27017/cinebamo";
@@ -34,4 +36,7 @@ MongoClient.connect(url,
     });
 
   });
-module.exports = router;
+module.exports = function(users) {
+  connectedUsers = users ;
+  return router;
+}

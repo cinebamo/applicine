@@ -26,6 +26,15 @@
                         <a class="nav-link" href="#">Home
                             <span class="sr-only">(current)</span></a>
                     </li>
+                    <li id="userLog" class="nav-item dropdown" style="display:none;">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Voir mon profil</a>
+                            <a class="dropdown-item" href="#">Me déconnecter</a>
+                        </div>
+                    </li>
                     <li id="" class="nav-item dropdown">
                         {# <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Catégories
@@ -96,9 +105,9 @@
                         </div> #}
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Titre du film ou acteurs" aria-label="Search">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
+                <form class="form-inline my-2 my-lg-0" id="searchForm" method="get">
+                    <input id="Search_title_actor" class="form-control mr-sm-2" type="search" value="" placeholder="Titre du film ou acteurs" aria-label="Search">
+                    <button id="button_search" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
                 </form>
             </div>
         </nav>

@@ -4,10 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var commentsRouter = require('./routes/comments');
-var moviesRouter = require('./routes/movies');
+var connectedUsers = {
+  users : {},
+  set : function(id, user) {
+    // console.log('--- set')
+    this.users[id] = user ;
+    // console.log(this.users) ;
+  },
+  get : function(id){
+    // console.log('--- get')
+    // console.log(this.users) ;
+    return this.users[id] ;
+  }
+}
+var indexRouter = require('./routes/index')(connectedUsers);
+var usersRouter = require('./routes/users')(connectedUsers);
+var commentsRouter = require('./routes/comments')(connectedUsers);
+var moviesRouter = require('./routes/movies')(connectedUsers);
 var app = express();
 
 // view engine setup
@@ -28,11 +41,11 @@ app.use('/movies', moviesRouter);
 /**
  * @author : Aina Nary
  */
-var searchRouter = require('./routes/search');
+var searchRouter = require('./routes/search')(connectedUsers);
 app.use('/search', searchRouter);
-var categoryRouter = require('./routes/category');
+var categoryRouter = require('./routes/category')(connectedUsers);
 app.use('/category', categoryRouter);
-var actorRouter = require('./routes/actor');
+var actorRouter = require('./routes/actor')(connectedUsers);
 app.use('/actor', actorRouter);
 
 // catch 404 and forward to error handler

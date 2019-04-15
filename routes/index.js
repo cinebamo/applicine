@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var connectedUsers = {} ;
+
 
 // declaration des variables qui contiennent la route vers mongodb et lurl pour ma connexion
 var MongoClient = require('mongodb').MongoClient,
@@ -48,7 +50,7 @@ router.get('/movies/:id', function(req, res, movie) {
 });
 
 /**
-*@author isa
+*@author isa et éric
 */
 /* users  login account  >>cinebat.dev/login */
 router.post('/login', function(req, res, next) {
@@ -59,15 +61,24 @@ router.post('/login', function(req, res, next) {
       return res.send(requiredProps[i] + 'empty');
     }
   }
-  DB.collection('users').insertOne(req.body, function(err, result){
+  DB.collection('users').findOne(req.body, function(err, user){
 
     if(err) throw err;
 
+    if(user && user._id) {
+      // set cookie avec uniqValue
+      connectedUsers.set(user._id.toString(), user) ;
       res.json({
         result : 'ok',
-        id : result.insertedId.toString()
+        message : 'connection reussie'
       });
-
+    } else {
+      res.json({
+        result : 'nok',
+        message : 'connection ratée'
+      });
+    }
+    
   });
 
 
@@ -89,4 +100,7 @@ router.get('/film', function(req, res, next) {
 });
 
 });
-module.exports = router;
+module.exports = function(users) {
+  connectedUsers = users ;
+  return router;
+}
