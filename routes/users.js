@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var connectedUsers = {} ;
 // declaration des variables qui contiennent la route vers mongodb et lurl pour ma connexion
 var MongoClient = require('mongodb').MongoClient,
     ObjectId = require('mongodb').ObjectId,// declaration de ObjectId qui appartient a mongodb donc le signaler ainsi a nodejs
@@ -19,6 +20,7 @@ var MongoClient = require('mongodb').MongoClient,
 */
 /* GET users listing. exemple pour obtenir tous les users*/
   router.get('/', function(req, res, next) {
+    connectedUsers.get();
     DB.collection('users').find({}).toArray(function(err, users){
         if(err) throw err;
           // console.log(users);
@@ -105,4 +107,7 @@ router.post('/', function(req, res, next) {
   });
 
 });
-module.exports = router;
+module.exports = function(users) {
+  connectedUsers = users ;
+  return router;
+}

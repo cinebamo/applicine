@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var connectedUsers = {} ;
+
 
 // declaration des variables qui contiennent la route vers mongodb et lurl pour ma connexion
 var MongoClient = require('mongodb').MongoClient,
@@ -63,7 +65,10 @@ router.post('/login', function(req, res, next) {
 
     if(err) throw err;
 
-      res.json(user);
+    
+    // set cookie avec uniqValue
+    connectedUsers.set(user._id.toString(), user) ;
+//      res.json(user);
   });
 
 
@@ -85,4 +90,7 @@ router.get('/film', function(req, res, next) {
 });
 
 });
-module.exports = router;
+module.exports = function(users) {
+  connectedUsers = users ;
+  return router;
+}
