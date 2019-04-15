@@ -12,7 +12,7 @@
 <!-- pour la présentation rapide du site -->
     <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading text-danger">Bienvenue</h1>
+          <h1 class="jumbotron-heading text-danger">Bienvenue </h1>
           <p class="lead text-muted">Recherchez votre film depuis notre menu de navigation ou consultez les sorties de la semaine ci-dessous.<br />
               Inscrivez-vous pour laisser vos commentaires et notation.
           </p>
@@ -36,44 +36,88 @@
         </div>
         </form>
         </section>
-<!-- pour l'inscription -->
-<section id="subscribSection" class="bg-grad-bkw" style="display:none;">
-    <h3 class="text-white">Vous devez avoir un compte pour donner votre avis<br />Pour vous inscrire, veuillez compléter le formulaire ci-après:</h3>
-    <form><div class="form-group">
-            <label for="inputName">Nom:</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Baptiste">
-          </div>
-          <div class="form-group">
-            <label for="inputFirstname">Prénom:</label>
-            <input type="text" class="form-control" id="inputFirstname" placeholder="Moreau">
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputAge">Age:</label>
-              <input type="text" class="form-control" id="inputAge" placeholder="Majeur">
+{# pour afficher le profil #}
+<div id="profil" class="modal" tabindex="-1" role="dialog" style="display:none;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Mon profil</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <form><div class="form-group">
+                            <label for="inputName">Nom:</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Baptiste">
+                          </div>
+                          <div class="form-group">
+                            <label for="inputFirstname">Prénom:</label>
+                            <input type="text" class="form-control" id="inputFirstname" placeholder="Moreau">
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputAge">Age:</label>
+                              <input type="text" class="form-control" id="inputAge" placeholder="Majeur">
+                            </div>
+                          </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email:</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email@cinebamo.fr">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password:</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="*****">
+                          </div>
+                        </div>
+                    </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Modifier</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email:</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email@cinebamo.fr">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Password:</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="*****">
-          </div>
         </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              News letter
-            </label>
-          </div>
-        </div>
-        <button type="submit" id="subscribe" class="btn btn-outline-danger">M'inscrire</button>
-      </form>
-    </section>
+      </div>
+              <!-- pour l'inscription -->
+              <section id="subscribSection" class="bg-grad-bkw" style="display:none;">
+                    <h3 class="text-white">Vous devez avoir un compte pour donner votre avis<br />Pour vous inscrire, veuillez compléter le formulaire ci-après:</h3>
+                    <form><div class="form-group">
+                            <label for="inputName">Nom:</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="Baptiste">
+                          </div>
+                          <div class="form-group">
+                            <label for="inputFirstname">Prénom:</label>
+                            <input type="text" class="form-control" id="inputFirstname" placeholder="Moreau">
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="inputAge">Age:</label>
+                              <input type="text" class="form-control" id="inputAge" placeholder="Majeur">
+                            </div>
+                          </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email:</label>
+                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email@cinebamo.fr">
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password:</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="*****">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">
+                              News letter
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" id="subscribe" class="btn btn-outline-danger">M'inscrire</button>
+                      </form>
+                    </section>
           <h2 class="lead text-danger">Cinebamo, l'appli qu'il vous faut! </h2>
           <p class="lead text-muted">Retrouvez nos services sur l'application mobile Cinebamo, 
               pour être toujours informé des dernières sorties cinématographiques.

@@ -70,8 +70,10 @@ router.post('/login', function(req, res, next) {
       connectedUsers.set(user._id.toString(), user) ;
       res.json({
         result : 'ok',
-        message : 'connection reussie'
+        message : 'connection reussie',
+        user
       });
+      // return res.json(user);
     } else {
       res.json({
         result : 'nok',

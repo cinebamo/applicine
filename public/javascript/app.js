@@ -78,18 +78,28 @@ $('#btnLogin').on('click', function(){
         dataType: 'json',
         headers : {"content-type" : "application/json"},
         data: JSON.stringify(data)
-      }).done(function(res){
-        console.log(res);
+      }).done(function(res, user){
+        
         $('#loginSection').hide();
         $('#userLog').show();
-//        $('.jumbotron-heading').append(users.firstname);
-
+        $('.jumbotron-heading').append(res.user.firstname);
+        $('#inputName').val(res.user.name);
+        $('#inputFirstname').val(res.user.firstname);
+        $('#inputAge').val(res.user.age);
+        $('#inputEmail4').val(res.user.email);
+        $('#inputPassword4').val(res.user.password);
       });
   });   
 
-    // $('#loginSection').hide();
-    // $('#userLog').show();
-    // $('.jumbotron-heading').append(res.body.name);
-  // })
+  $('#userProfil').on('click', function(){
 
+    $('#profil').show();
+
+  });
+
+  $('.close').on('click', function(){
+
+    $('#profil').hide();
+
+  })
 });
