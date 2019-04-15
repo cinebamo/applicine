@@ -16,8 +16,57 @@ $('#categs').on('change',function(evt){
 
 
 /**
- * @author
+ * @author Aina, Georges
  */
+function clonageCard(id, video, title, summary, score) {
+
+  //Info en reponse
+  var cardID = 'card_' + id
+  var cardIDselector = '#' + cardID
+  //Recuperer la carte exemple "cardModel"
+  var cardClone = $("#card_original").clone().attr('id', cardID);
+  //$(cardClone).find("h5").text("exemple");
+  $("#cardRow").append(cardClone)
+
+  //Charger le contenu dans la carte clone
+  var selectorTitle = cardIDselector + " h3"
+  var selectorText = cardIDselector + " p"
+  $(selectorTitle).text(title)
+  $(selectorText).text(summary)
+
+  /////////////////////////////////
+  // Todo : les notes et la video
+  //
+  //
+  //Enlever le display none
+  // $(cardIDselector).removeClass("d-none")
+}
+
+// "searchForm" est l'ID du form
+// "Search_title_actor" est l'ID du input
+// "categs" est l'ID du select
+$("#searchForm").submit(function (evt) {
+  evt.stopPropagation()
+  evt.preventDefault()
+  
+  $.get({
+    url: "search/",
+    data: {
+      title_actor: $("#Search_title_actor").val(),
+      category: $("#categs").val()
+    },
+    success: function (reponse) {
+
+      //Traiter chaque carte
+     
+      $("#cardRow > div:not(:first) ").remove()
+      reponse.forEach(function (film) {
+        clonageCard(film['_id'], film['video'], film['title'], film['summary'], film['score'])
+      });
+    },
+    dataType: "json"
+  })
+});
 
 
 
