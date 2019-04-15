@@ -59,15 +59,11 @@ router.post('/login', function(req, res, next) {
       return res.send(requiredProps[i] + 'empty');
     }
   }
-  DB.collection('users').insertOne(req.body, function(err, result){
+  DB.collection('users').findOne(req.body, function(err, user){
 
     if(err) throw err;
 
-      res.json({
-        result : 'ok',
-        id : result.insertedId.toString()
-      });
-
+      res.json(user);
   });
 
 

@@ -17,9 +17,63 @@
               Inscrivez-vous pour laisser vos commentaires et notation.
           </p>
           <p>
-            <a href="#" class="btn btn-outline-danger my-2">S'inscrire</a>
-            <a href="#" class="btn btn-secondary btn-outline-danger my-2">Se connecter</a>
+            <a href="#" id="btnSubscribe" class="btn btn-outline-danger my-2">S'inscrire</a>
+            <a href="#" id="btnLogin" class="btn btn-secondary btn-outline-danger my-2">Se connecter</a>
           </p>
+<!-- pour le login -->
+<section id="loginSection" class="bg-grad-bkw" style="display:none;">
+    <form id="loginForm" class="form-inline">
+            <div class="form-group mb-2 pl-1">
+              <label for="inputEmail" class="sr-only">Email</label>
+              <input type="text" class="form-control" id="inputEmail" value="email@example.com" placeholder="Email">
+            </div>
+            <div class="form-group mb-2 pl-1">
+              <label for="inputPassword2" class="sr-only">Mot de passe</label>
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Mot de passe">
+            </div>
+            <div class="form-group mb-2 pl-1">
+            <button type="submit" id="login" class="btn btn-outline-danger">Me connecter</button>
+        </div>
+        </form>
+        </section>
+<!-- pour l'inscription -->
+<section id="subscribSection" class="bg-grad-bkw" style="display:none;">
+    <h3 class="text-white">Vous devez avoir un compte pour donner votre avis<br />Pour vous inscrire, veuillez compléter le formulaire ci-après:</h3>
+    <form><div class="form-group">
+            <label for="inputName">Nom:</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Baptiste">
+          </div>
+          <div class="form-group">
+            <label for="inputFirstname">Prénom:</label>
+            <input type="text" class="form-control" id="inputFirstname" placeholder="Moreau">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputAge">Age:</label>
+              <input type="text" class="form-control" id="inputAge" placeholder="Majeur">
+            </div>
+          </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email:</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email@cinebamo.fr">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password:</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="*****">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              News letter
+            </label>
+          </div>
+        </div>
+        <button type="submit" id="subscribe" class="btn btn-outline-danger">M'inscrire</button>
+      </form>
+    </section>
           <h2 class="lead text-danger">Cinebamo, l'appli qu'il vous faut! </h2>
           <p class="lead text-muted">Retrouvez nos services sur l'application mobile Cinebamo, 
               pour être toujours informé des dernières sorties cinématographiques.
@@ -63,60 +117,8 @@
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
               </div>
 </section>
-<!-- pour le login -->
-<section id="login" class="bg-grad-bkw">
-    <form class="form-inline">
-            <div class="form-group mb-2 pl-1">
-              <label for="inputEmail" class="sr-only">Email</label>
-              <input type="text" class="form-control" id="inputEmail" value="email@example.com" placeholder="Email">
-            </div>
-            <div class="form-group mb-2 pl-1">
-              <label for="inputPassword2" class="sr-only">Mot de passe</label>
-              <input type="password" class="form-control" id="inputPassword2" placeholder="Mot de passe">
-            </div>
-            <div class="form-group mb-2 pl-1">
-            <button type="submit" class="btn btn-outline-danger">Me connecter</button>
-        </div>
-        </form>
-        </section>
-<!-- pour l'inscription -->
-<section id="subscrib" class="bg-grad-bkw">
-    <h3 class="text-white">Vous devez avoir un compte pour donner votre avis<br />Pour vous inscrire, veuillez compléter le formulaire ci-après:</h3>
-    <form><div class="form-group">
-            <label for="inputName">Nom:</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Baptiste">
-          </div>
-          <div class="form-group">
-            <label for="inputFirstname">Prénom:</label>
-            <input type="text" class="form-control" id="inputFirstname" placeholder="Moreau">
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputAge">Age:</label>
-              <input type="text" class="form-control" id="inputAge" placeholder="Majeur">
-            </div>
-          </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email:</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email@cinebamo.fr">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Password:</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="*****">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              News letter
-            </label>
-          </div>
-        </div>
-        <button type="submit" class="btn  btn-outline-danger">M'inscrire</button>
-      </form>
-    </section>
+
+
 </main>
 
 
