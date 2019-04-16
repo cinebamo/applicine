@@ -270,36 +270,30 @@ $(document).ready(function () {
   for (var i in allCookies) {
     var str = allCookies[i];
     var strs = str.split('=');
-
+  }
     if (cookies[strs[0]] === strs[1]) {
 
       // si on a cookie
       //var token = ;
 
       $.ajax({
-        url: '/users/' + token,
-        method: 'GET',
-        dataType: 'json',
-<<<<<<< HEAD
-        headers : {"content-type" : "application/json"},
-        data: JSON.stringify(data)
-      }).done(function(res, user){
-=======
-        headers: { "content-type": "application/json" },
-      }).done(function (res, user) {
->>>>>>> f08394a5d48a200236ac053d1b055e2e53f8aaea
+            url: '/users/' + token,
+            method: 'GET',
+            dataType: 'json',
+            headers: { "content-type": "application/json" },
+          }).done(function (res, user) {
 
-        $('#loginSection').hide();
-        $('#userLog').show();
-        $('.jumbotron-heading').append(res.user.firstname);
-        $('#inputName').val(res.user.name);
-        $('#inputFirstname').val(res.user.firstname);
-        $('#inputAge').val(res.user.age);
-        $('#inputEmail4').val(res.user.email);
-        $('#inputPassword4').val(res.user.password);
-        $('#profileForm').attr('action', '/users/' + res.user._id);
-      });
-  });
+            $('#loginSection').hide();
+            $('#userLog').show();
+            $('.jumbotron-heading').append(res.user.firstname);
+            $('#inputName').val(res.user.name);
+            $('#inputFirstname').val(res.user.firstname);
+            $('#inputAge').val(res.user.age);
+            $('#inputEmail4').val(res.user.email);
+            $('#inputPassword4').val(res.user.password);
+            $('#profileForm').attr('action', '/users/' + res.user._id);
+          });
+  };
 
   $('#userProfil').on('click', function(){
 
