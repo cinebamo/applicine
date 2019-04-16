@@ -33,7 +33,7 @@
     <section id="one-movie" class="bg-grad-bkw">
             <div class="jumbotron jumbotron-fluid bg-sand col-12">
                     <div class="container col-12">
-                        <h1 class="display-4 col-12 align">Le retour de la Vagrant</h1>
+                        <h1 class="display-4 col-12 align">{{ title }}<!--Le retour de la Vagrant --></h1>
                         <video class="bd-placeholder-img card-img-top" width="100" height="225" controls="controls" poster="images/.png"  allowfullscreen >
                             <source src="" type="video/mp4" />
                             <source src="e.webm" type="video/webm" />
@@ -45,7 +45,8 @@
                 <div class="container space-in col-12">
                     <h2 class="blog-post-title">Synopsis:</h2>
                     <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>
+                    <p>{{ summary }}
+                    <!--
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -60,6 +61,7 @@
                         in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                         deserunt mollit anim id est laborum."
+                        -->
                     </p>
                 </div>
 

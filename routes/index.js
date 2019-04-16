@@ -100,7 +100,22 @@ router.get('/cgu', function(req, res, next) {
 router.get('/film', function(req, res, next) {
   res.render('film', {});
 });
-
+/**
+ * @author Aina
+ */
+// Ajout pour page film recuperer par search
+router.get('/film/:id', function(req, res, movie) {
+  DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, m){
+    if(err) throw err;
+    console.log(m.title)
+    console.log(m.summary)
+    // Apres obtention de l'API, changez avec id !
+    //res.json({result: "ok"});
+    res.render('film', {title : m.title, 
+                      summary : m.summary
+                    });
+  });
+});
 });
 module.exports = function(users) {
   connectedUsers = users ;

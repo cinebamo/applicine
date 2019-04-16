@@ -33,7 +33,9 @@ function clonageCard(id, video, title, summary, score) {
   var selectorText = cardIDselector + " p"
   $(selectorTitle).text(title)
   $(selectorText).text(summary)
-
+  $(cardIDselector + " button:first").click(function() {
+    window.location.href = 'film/'+id;
+  })
   /////////////////////////////////
   // Todo : les notes et la video
   //
