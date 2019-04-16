@@ -100,51 +100,176 @@ $(document).ready(function(){
 
        });
 
- /**
- * @author éric et isa
- */
-$(document).ready(function(){
 
-// au click du bouton s'inscrire fait apparaitre le formulaire d'inscription
-  $('#btnSubscribe').on('click', function(){
+/**
+* @author éric et isa
+*/
+$(document).ready(function () {
 
+  // au click du bouton s'inscrire fait apparaitre le formulaire d'inscription
+  $('#btnSubscribe').on('click', function () {
+
+    cleanform();
+    $('#loginSection').hide();
     $('#subscribSection').show();
-    $('body').css('background','rgba(255,255,255,0.9)');
+    $('body').css('background', 'rgba(255,255,255,0.9)');
   });
 
-// au click du bouton login fait apparaitre le formulaire de connexion
-$('#btnLogin').on('click', function(){
-
-  $('#loginSection').show();
-  $('body').css('background','rgba(255,255,255,0.9)');
-});
-
-// au click m'inscrire après remplissage du formulaire  d'inscription
-  $('#subscribe').on('click', function(){
+  // au click du bouton login fait apparaitre le formulaire de connexion
+  $('#btnLogin').on('click', function () {
 
     $('#subscribSection').hide();
-    $('#loginSection').show().prepend('<h3>Votre compte à bien été crée, veuillez vous connecter afin de bénéficier de tous les avantages des membres');
+    $('#loginSection').show();
+    $('body').css('background', 'rgba(255,255,255,0.9)');
+  });
+
+  // au click m'inscrire après remplissage du formulaire  d'inscription je cache le formulaire et affiche le login
+  $('#subscribe').on('click', function (event) {
+
+    event.preventDefault();
+    var data = {};
+    $('#suscribForm [name]').map(function (i, x) {
+      data[x.name] = x.value
+    });
+    $.ajax({
+      url: '/users',
+      method: 'POST',
+      dataType: 'json',
+      headers: { "content-type": "application/json" },
+      data: JSON.stringify(data)
+    }).done(function (res) {
+
+      $('#subscribSection').hide();
+      $('#loginSection').show().prepend('<h3>Votre compte à bien été créé, veuillez vous connecter afin de bénéficier de tous les avantages des membres');
+    });
 
   });
 
-// au click me connecter après remplissage des inputs user/password
+  // au click me connecter après remplissage des inputs user/password
 
-  $('#loginForm').on('submit', function(event){
+  $('#loginForm').on('submit', function (event) {
     console.log('là login');
     event.preventDefault();
-    var data = {} ;
-    $('#loginForm [name]').map(function(i, x){
+    var data = {};
+    $('#loginForm [name]').map(function (i, x) {
       data[x.name] = x.value
     });
     console.log(data);
+    $.ajax({
+      url: '/login',
+      method: 'POST',
+      dataType: 'json',
+      headers: { "content-type": "application/json" },
+      data: JSON.stringify(data)
+    }).done(function (res, user) {
+
+      $('#loginSection').hide();
+      $('#userLog').show();
+      $('.jumbotron-heading').append(res.user.firstname);
+      $('#inputName').val(res.user.name);
+      $('#inputFirstname').val(res.user.firstname);
+      $('#inputAge').val(res.user.age);
+      $('#inputEmail4').val(res.user.email);
+      $('#inputPassword4').val(res.user.password);
+      $('#profileForm').attr('action', '/users/' + res.user._id);
+    });
+  });
+
+  // pour afficher le profil depuis l'icone user du menu
+  $('#userProfil').on('click', function () {
+
+    $('#profil').show();
+
+  });
+
+  // pour fermer les modal/formulaire d'inscription/login
+  $('.close').on('click', function () {
+
+    cleanform();
+    $('#profil').hide();
+    $('#loginSection').hide();
+    $('#subscribSection').hide();
+
+  });
+
+  // pour se deconnecter dans icone profil
+  $('.dropdown-menu, .dropdown-item').on('click', function () {
+
+    $('#userLog').hide();
+  });
+
+  //Modification du profil
+
+  $('#btnModify').on('click', function (event) {
+    
+    event.preventDefault();
+    var data = {};
+    $('#profileForm [name]').map(function (i, x) {
+      data[x.name] = x.value
+    });
+    console.log(data);
+    $.ajax({
+      url: $('#profileForm').attr('action'),
+      method: 'PUT',
+      dataType: 'json',
+      headers: { "content-type": "application/json" },
+      data: JSON.stringify(data)
+    }).done(function (res) {
+      $('#profil').hide();
+      $('#loginSection').show().prepend('<h3>Votre compte à bien été modifié, veuillez vous reconnecter.');
+      $('.jumbotron-heading').append(data.firstname);
+      $('#inputName').val(data.name);
+      $('#inputFirstname').val(data.firstname);
+      $('#inputAge').val(data.age);
+      $('#inputEmail4').val(data.email);
+      $('#inputPassword4').val(data.password);
+    });
+  })
+
+  // Suppression du profil
+  $('#btnDelete').on('click', function (event) {
+    event.stopPropagation();
+    event.preventDefault();
+    
+    $.ajax({
+      url: $('#profileForm').attr('action'),
+      method: 'DELETE',
+      dataType: 'json',
+      headers: { "content-type": "application/json" }
+      //data: JSON.stringify(data)
+    }).always(function(res) {
+      $('#profil').hide();
+      $('.jumbotron-heading').html('Au revoir, triste de votre départ ...');
+      $('.lead, .text-muted').html('Votre compte a bien été supprimé.');
+    });
+  })
+  
+  // pour nettoyer les formulaires
+  function cleanform() {
+
+    $('input').val(null);
+
+  }
+
+
+  var allCookies = document.cookie.split(';');
+  var cookies = {};
+  for (var i in allCookies) {
+    var str = allCookies[i];
+    var strs = str.split('=');
+
+    if (cookies[strs[0]] === strs[1]) {
+
+      // si on a cookie
+      //var token = ;
+
       $.ajax({
-        url: '/login',
-        method: 'POST',
+        url: '/users/' + token,
+        method: 'GET',
         dataType: 'json',
-        headers : {"content-type" : "application/json"},
-        data: JSON.stringify(data)
-      }).done(function(res, user){
-        
+        headers: { "content-type": "application/json" },
+      }).done(function (res, user) {
+
         $('#loginSection').hide();
         $('#userLog').show();
         $('.jumbotron-heading').append(res.user.firstname);
@@ -153,6 +278,7 @@ $('#btnLogin').on('click', function(){
         $('#inputAge').val(res.user.age);
         $('#inputEmail4').val(res.user.email);
         $('#inputPassword4').val(res.user.password);
+        $('#profileForm').attr('action', '/users/' + res.user._id);
       });
   });
 

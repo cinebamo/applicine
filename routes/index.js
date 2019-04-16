@@ -65,15 +65,23 @@ router.post('/login', function(req, res, next) {
 
     if(err) throw err;
 
+    
+
     if(user && user._id) {
+
+    var token = user._id.toString();
+    console.log('token', token);
+    res.cookie('token', token);
+    connectedUsers.set(token, user);
+
+
       // set cookie avec uniqValue
-      connectedUsers.set(user._id.toString(), user) ;
+     //connectedUsers.set(user._id.toString(), user) ;
       res.json({
         result : 'ok',
         message : 'connection reussie',
         user
       });
-      // return res.json(user);
     } else {
       res.json({
         result : 'nok',
