@@ -74,25 +74,37 @@ $("#searchForm").submit(function (evt) {
 
 
  /**
- * @author
+ * @author Mathias
  */
+$(document).ready(function(){
        $.ajax({
          url: '/comments',
          method: 'GET'
        }).done(function(res){
-         for(var i = 0; i<3;i++){
-           var modulo=comment.score%1;
-           for(var j = 0; j<comment.score-modulo;j++){
-             $('#etoile').append('<img src="../../public/images/Etoile_pleine.png" alt="" />')
-           }
+         var x=0;
            res.forEach(function(comment) {
-             $('#title').text(comment.title),
-             $('#comm').text(comment.content)
-           })
-         }
-
+             $('#title'+x).text(comment.title);
+             var modu = comment.score%1;
+             var nbreEtoile = comment.score - modu;
+             $('#commen'+x).text(comment.content);
+             for(var y = 1; y<=nbreEtoile; y++){
+               $('#etoile'+x+'-'+y).attr('src', "../images/EtoilePleine.png");
+             }
+             if(modu==0.5){
+                $('#etoile'+x+'-'+y).attr('src', "../images/Etoile moitié.png");
+                for(var y = nbreEtoile+2; y<=6; y++){
+                  $('#etoile'+x+'-'+y).attr('src', "../images/Etoile vide.png");
+                }
+             }
+             else{
+               for(var y = nbreEtoile+1; y<=6; y++){
+                 $('#etoile'+x+'-'+y).attr('src', "../images/Etoile vide.png");
+               }
+             }
+             x++;
+           });
        });
-
+      });
  /**
  * @author éric et isa
  */
@@ -137,7 +149,7 @@ $('#btnLogin').on('click', function(){
         headers : {"content-type" : "application/json"},
         data: JSON.stringify(data)
       }).done(function(res, user){
-        
+
         $('#loginSection').hide();
         $('#userLog').show();
         $('.jumbotron-heading').append(res.user.firstname);

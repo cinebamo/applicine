@@ -6,7 +6,7 @@
 /* je defini lendroit ou va sinserer mon script html avec block body*/
             /* ici je rentre ce que je veux inserer */
 {% block body %}
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">  <i class="fas fa-exclamation"></i>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> 
 
 
 <main class="d-flex flex-column"></main>
@@ -102,19 +102,17 @@
         </fieldset>
     </form>
 <section id="lescomms">
-  {% for i in 2..0 %}
+  {% for i in 0..2 %}
     <div class="card-comm">
       <div class="nom-note">
-        <p id="title">Title</p>
-        <div id="etoile" class="etoiles">
-          <!-- <img src="/images/Etoile_pleine.png" alt="">
-          <img src="/images/Etoile_pleine.png" alt="">
-          <img src="/images/Etoile_pleine.png" alt="">
-          <img src="/images/Etoile_pleine.png" alt="">
-          <img src="/images/Etoile_pleine.png" alt=""> -->
+        <p id="title{{i}}">Nom</p>
+        <div class="etoiles">
+          {% for j in 1..5 %}
+            <img id="etoile{{i}}-{{j}}" alt="">
+          {% endfor %}
         </div>
       </div>
-      <p id="comm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p class="text"id="commen{{i}}"></p>
       <div class="signal">
         <i class="fas fa-exclamation"></i>
         <i class="fas fa-pencil-alt"></i>
