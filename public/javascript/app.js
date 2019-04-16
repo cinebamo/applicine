@@ -76,25 +76,38 @@ $("#searchForm").submit(function (evt) {
 
 
  /**
- * @author
+ * @author Mathias
  */
+$(document).ready(function(){
        $.ajax({
          url: '/comments',
          method: 'GET'
        }).done(function(res){
-         for(var i = 0; i<3;i++){
-           var modulo=comment.score%1;
-           for(var j = 0; j<comment.score-modulo;j++){
-             $('#etoile').append('<img src="../../public/images/Etoile_pleine.png" alt="" />')
-           }
+         var x=0;
            res.forEach(function(comment) {
-             $('#title').text(comment.title),
-             $('#comm').text(comment.content)
-           })
-         }
-
+             $('#title'+x).text(comment.title);
+             var modu = comment.score%1;
+             var nbreEtoile = comment.score - modu;
+             $('#commen'+x).text(comment.content);
+             for(var y = 1; y<=nbreEtoile; y++){
+               $('#etoile'+x+'-'+y).attr('src', "../images/EtoilePleine.png");
+             }
+             if(modu==0.5){
+                $('#etoile'+x+'-'+y).attr('src', "../images/Etoile moitié.png");
+                for(var y = nbreEtoile+2; y<=6; y++){
+                  $('#etoile'+x+'-'+y).attr('src', "../images/Etoile vide.png");
+                }
+             }
+             else{
+               for(var y = nbreEtoile+1; y<=6; y++){
+                 $('#etoile'+x+'-'+y).attr('src', "../images/Etoile vide.png");
+               }
+             }
+             x++;
+           });
        });
 
+      });
 
 /**
 * @author éric et isa
@@ -196,7 +209,7 @@ $(document).ready(function () {
   //Modification du profil
 
   $('#btnModify').on('click', function (event) {
-    
+
     event.preventDefault();
     var data = {};
     $('#profileForm [name]').map(function (i, x) {
@@ -225,7 +238,7 @@ $(document).ready(function () {
   $('#btnDelete').on('click', function (event) {
     event.stopPropagation();
     event.preventDefault();
-    
+
     $.ajax({
       url: $('#profileForm').attr('action'),
       method: 'DELETE',
@@ -238,7 +251,7 @@ $(document).ready(function () {
       $('.lead, .text-muted').html('Votre compte a bien été supprimé.');
     });
   })
-  
+
   // pour nettoyer les formulaires
   function cleanform() {
 
@@ -252,30 +265,30 @@ $(document).ready(function () {
   for (var i in allCookies) {
     var str = allCookies[i];
     var strs = str.split('=');
-
+  }
     if (cookies[strs[0]] === strs[1]) {
 
       // si on a cookie
       //var token = ;
 
       $.ajax({
-        url: '/users/' + token,
-        method: 'GET',
-        dataType: 'json',
-        headers: { "content-type": "application/json" },
-      }).done(function (res, user) {
+            url: '/users/' + token,
+            method: 'GET',
+            dataType: 'json',
+            headers: { "content-type": "application/json" },
+          }).done(function (res, user) {
 
-        $('#loginSection').hide();
-        $('#userLog').show();
-        $('.jumbotron-heading').append(res.user.firstname);
-        $('#inputName').val(res.user.name);
-        $('#inputFirstname').val(res.user.firstname);
-        $('#inputAge').val(res.user.age);
-        $('#inputEmail4').val(res.user.email);
-        $('#inputPassword4').val(res.user.password);
-        $('#profileForm').attr('action', '/users/' + res.user._id);
-      });
-  });
+            $('#loginSection').hide();
+            $('#userLog').show();
+            $('.jumbotron-heading').append(res.user.firstname);
+            $('#inputName').val(res.user.name);
+            $('#inputFirstname').val(res.user.firstname);
+            $('#inputAge').val(res.user.age);
+            $('#inputEmail4').val(res.user.email);
+            $('#inputPassword4').val(res.user.password);
+            $('#profileForm').attr('action', '/users/' + res.user._id);
+          });
+  };
 
   $('#userProfil').on('click', function(){
 
