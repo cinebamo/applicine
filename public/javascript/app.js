@@ -36,6 +36,7 @@ function clonageCard(id, video, title, summary, score) {
   $(cardIDselector + " button:first").click(function() {
     window.location.href = 'film/'+id;
   })
+  $(cardIDselector).css('display','initial');
   /////////////////////////////////
   // Todo : les notes et la video
   //
@@ -58,7 +59,7 @@ $("#searchForm").submit(function (evt) {
       category: $("#categs").val()
     },
     success: function (reponse) {
-
+      
       //Traiter chaque carte
 
       $("#cardRow > div:not(:first) ").remove()
