@@ -65,15 +65,23 @@ router.post('/login', function(req, res, next) {
 
     if(err) throw err;
 
+    
+
     if(user && user._id) {
+
+    var token = user._id.toString();
+    console.log('token', token);
+    res.cookie('token', token);
+    connectedUsers.set(token, user);
+
+
       // set cookie avec uniqValue
-      connectedUsers.set(user._id.toString(), user) ;
+     //connectedUsers.set(user._id.toString(), user) ;
       res.json({
         result : 'ok',
         message : 'connection reussie',
         user
       });
-      // return res.json(user);
     } else {
       res.json({
         result : 'nok',
@@ -100,7 +108,22 @@ router.get('/cgu', function(req, res, next) {
 router.get('/film', function(req, res, next) {
   res.render('film', {});
 });
-
+/**
+ * @author Aina
+ */
+// Ajout pour page film recuperer par search
+router.get('/film/:id', function(req, res, movie) {
+  DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, m){
+    if(err) throw err;
+    console.log(m.title)
+    console.log(m.summary)
+    // Apres obtention de l'API, changez avec id !
+    //res.json({result: "ok"});
+    res.render('film', {title : m.title, 
+                      summary : m.summary
+                    });
+  });
+});
 });
 module.exports = function(users) {
   connectedUsers = users ;

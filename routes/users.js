@@ -52,7 +52,25 @@ router.get('/:id', function(req, res, next) {
 */
 /* PUT users UPDATE account >>cinebat.dev/user/$id	*/
   router.put('/:id', function(req, res, next) {
+
+    var session = connectedUsers.get(req.cookies.token);
+    if (req.params.id !== session._id.toString()){
+      return res.send('Connexion échouée, veuillez vérifier vos identifiants');
+    }
+    
+    var requiredProps = req.body;
+    //var requiredProps = ['name','firstname', 'email', 'password','age'];
+  // je verifie qu'il y ai bien des données reçues en post.
+  //for(var i in requiredProps[i]) {
+    // si les données reçue est indefinie répond que le champ est vide et coupe le script avec le return
+    //if(typeof req.body[requiredProps[i]] == 'undefined'){
+      if(typeof requiredProps == 'undefined'){
+      //return res.send(requiredProps[i] + 'empty');
+      return res.send(requiredProps + 'empty');
+    }
+  
     //  update dans la DB ou id = params id et tu affiche ok
+    // connectedUsers.get(req.cookies.token);
     DB.collection('users').updateOne(
         {_id: ObjectId(req.params.id)},
               {$set:req.body},  
