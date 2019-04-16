@@ -73,7 +73,52 @@ $("#searchForm").submit(function (evt) {
 
 
 
+/**
+ * @author Maxime & Mathias
+ */
+$(document).ready(function()
+{
+function clonecomment (id, content, date, score) {
+  //Info en reponse
+  var commentID = 'comment_' + id
+  var commentIDselector = '#' + commentID
+  //Recuperer le comment exemple "commentModel"
+  var commentClone = $("#insertcomment").clone().attr('id', commentID);
+  $("#containercomment").append(commentClone)
 
+   //Charger le contenu dans le clone
+   var selectdate = commentIDselector + " h3"
+   var selectcontent = commentIDselector + " h4"
+   var selecttext = commentIDselector + " p"
+   $(selectdate).text(date)
+   $(selectcontent).text(content)
+   $(selecttext).text(text)
+}
+
+// Boucle de vérification si le user est connecté ou non 
+
+  
+    // Poster le commentaire dans la base de donnée avec ajax
+    $('#postcomment').on('submit', function(evt){ 
+      evt.stopPropagation()
+      evt.preventDefault()
+      var data = {}
+      data.content = $("#comment").val()
+        
+      $.ajax({
+        url: 'comments/',
+        method: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      }).done(function (reponse){
+        
+        reponse.forEach(function (comment) {
+          clonecomment(comment['_id'], comment['content'], comment['date'], comment['score'])
+        });
+        dataType: "json"
+      });   
+})
+});
 
 
  /**

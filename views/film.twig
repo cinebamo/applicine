@@ -65,8 +65,8 @@
                     </p>
                 </div>
 
-
-                <div class="container space-in bg-sand col-12">
+            <div id ="containercomment">
+                <div class="container space-in bg-sand col-12" id="insertcomment" >
                     <h4 class="blog-post-title">Vos derniers avis:</h4>
                     <p class="blog-post-meta">April 13, 2019 by <a href="#" class="text-danger">Georges</a></p>
                     <h4>un film génial, j'adore créer des vagrants!!!</h4>
@@ -77,21 +77,14 @@
                         ut aliquip ex ea commodo consequat."
                     </p>
                 </div>
-
+            </div>
         </section>
 <!-- pour le login -->
 <section id="login" class="bg-grad-bkw">
-        <form class="form-group">
+        <form class="form-group" id="postcomment">
                 <fieldset>
                         <legend class="text-white">Laisser votre commentaire:</legend>
-                <div class="form-group mb-2 pl-1">
-                  <label for="inputEmail" class="sr-only">Email</label>
-                  <input type="text" class="form-control" id="inputEmail" value="email@example.com" placeholder="Email">
-                </div>
-                <div class="form-group mb-2 pl-1">
-                  <label for="inputPassword2" class="sr-only">Mot de passe</label>
-                  <input type="password" class="form-control" id="inputPassword2" placeholder="Mot de passe">
-                </div>
+
                 <div class="form-group d-flex justify-content-left pl-1">
                         <label for="exampleFormControlTextarea1"></label>
                         <textarea id="comment" name="comment" class="form-control space-around col-12" id="exampleFormControlTextarea1" rows="3" placeholder="Enter your comment"></textarea>
@@ -126,44 +119,6 @@
         <p>Afficher tous les commentaires</p>
   </div>
 </section>
-<!-- pour l'inscription -->
-<section id="subscrib" class="bg-grad-bkw">
-    <h3 class="text-white">Vous devez avoir un compte pour donner votre avis<br />Pour vous inscrire, veuillez compléter le formulaire ci-après:</h3>
-    <form><div class="form-group">
-            <label for="inputName">Nom:</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Baptiste">
-          </div>
-          <div class="form-group">
-            <label for="inputFirstname">Prénom:</label>
-            <input type="text" class="form-control" id="inputFirstname" placeholder="Moreau">
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputAge">Age:</label>
-              <input type="text" class="form-control" id="inputAge" placeholder="Majeur">
-            </div>
-          </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email:</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email@cinebamo.fr">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Password:</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="*****">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              News letter
-            </label>
-          </div>
-        </div>
-        <button type="submit" class="btn  btn-outline-danger">M'inscrire</button>
-      </form>
-    </section>
 </main>
 
 <script src="/javascript/app.js"></script>
