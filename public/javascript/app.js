@@ -1,5 +1,5 @@
 $('#categs').on('change',function(evt){
-  
+
   document.getElementById('movies').innerHTML = '';
       $.ajax({
         url: '/search/?category='+$('#categs').val(),
@@ -11,7 +11,7 @@ $('#categs').on('change',function(evt){
         res.forEach(function(movie) {
           $('#movies').append('<div><div class="title">'+movie.title+'</div></div>')
         })
-      });   
+      });
 });
 
 
@@ -48,7 +48,7 @@ function clonageCard(id, video, title, summary, score) {
 $("#searchForm").submit(function (evt) {
   evt.stopPropagation()
   evt.preventDefault()
-  
+
   $.get({
     url: "search/",
     data: {
@@ -58,7 +58,7 @@ $("#searchForm").submit(function (evt) {
     success: function (reponse) {
 
       //Traiter chaque carte
-     
+
       $("#cardRow > div:not(:first) ").remove()
       reponse.forEach(function (film) {
         clonageCard(film['_id'], film['video'], film['title'], film['summary'], film['score'])
@@ -76,13 +76,22 @@ $("#searchForm").submit(function (evt) {
  /**
  * @author
  */
+       $.ajax({
+         url: '/comments',
+         method: 'GET'
+       }).done(function(res){
+         for(var i = 0; i<3;i++){
+           var modulo=comment.score%1;
+           for(var j = 0; j<comment.score-modulo;j++){
+             $('#etoile').append('<img src="../../public/images/Etoile_pleine.png" alt="" />')
+           }
+           res.forEach(function(comment) {
+             $('#title').text(comment.title),
+             $('#comm').text(comment.content)
+           })
+         }
 
-
- 
-
-
-
-
+       });
 
  /**
  * @author éric et isa
@@ -138,7 +147,7 @@ $('#btnLogin').on('click', function(){
         $('#inputEmail4').val(res.user.email);
         $('#inputPassword4').val(res.user.password);
       });
-  });   
+  });
 
   $('#userProfil').on('click', function(){
 
