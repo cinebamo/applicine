@@ -37,6 +37,11 @@ function clonageCard(id, video, title, summary, score) {
     window.location.href = 'film/'+id;
   })
   $(cardIDselector).css('display','initial');
+  if(score >0) {
+    for(var i = 0; i<score; i++){
+      $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star"></i>')
+    }
+  }
   /////////////////////////////////
   // Todo : les notes et la video
   //
