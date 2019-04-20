@@ -312,32 +312,34 @@ $(document).ready(function () {
 
 
   var allCookies = document.cookie.split(';');
+  console.log("Les cookies : " + allCookies)
   var cookies = {};
   for (var i in allCookies) {
     var str = allCookies[i];
     var strs = str.split('=');
   }
-    if (cookies[strs[0]] === strs[1]) {
-
+  console.log(strs)
+    if (strs[0] === "token") {
+      
       // si on a cookie
       //var token = ;
-
+      token = strs[1]
       $.ajax({
             url: '/users/' + token,
             method: 'GET',
             dataType: 'json',
             headers: { "content-type": "application/json" },
           }).done(function (res, user) {
-
+            
             $('#loginSection').hide();
             $('#userLog').show();
-            $('.jumbotron-heading').append(res.user.firstname);
-            $('#inputName').val(res.user.name);
-            $('#inputFirstname').val(res.user.firstname);
-            $('#inputAge').val(res.user.age);
-            $('#inputEmail4').val(res.user.email);
-            $('#inputPassword4').val(res.user.password);
-            $('#profileForm').attr('action', '/users/' + res.user._id);
+            $('.jumbotron-heading').append(res.firstname);
+            $('#inputName').val(res.name);
+            $('#inputFirstname').val(res.firstname);
+            $('#inputAge').val(res.age);
+            $('#inputEmail4').val(res.email);
+            $('#inputPassword4').val(res.password);
+            $('#profileForm').attr('action', '/users/' + res._id);
           });
   };
 
