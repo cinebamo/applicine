@@ -252,10 +252,10 @@ $(document).ready(function () {
   });
 
   // pour se deconnecter dans icone profil
-  $('.dropdown-menu, .dropdown-item').on('click', function () {
+  // $('.dropdown-menu, .dropdown-item').on('click', function () {
 
-    $('#userLog').hide();
-  });
+  //   $('#userLog').hide();
+  // });
 
   //Modification du profil
 
@@ -312,13 +312,13 @@ $(document).ready(function () {
 
 
   var allCookies = document.cookie.split(';');
-  console.log("Les cookies : " + allCookies)
+ 
   var cookies = {};
   for (var i in allCookies) {
     var str = allCookies[i];
     var strs = str.split('=');
   }
-  console.log(strs)
+  
     if (strs[0] === "token") {
       
       // si on a cookie
@@ -353,5 +353,25 @@ $(document).ready(function () {
 
     $('#profil').hide();
 
+  })
+
+/**
+* @author Aina
+*/
+  function delete_cookie( name ) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+  //fonction pour se deconnecter via "Me deconnecter"
+  $('#userDisconect').on('click', function() {
+    $('#userLog').hide();
+    delete_cookie('token'); //le cookie s'appelle actuelement 'token'
+    // Je prefere vider aussi els informations dans el formulaire au cas ou ca reste ...
+    $('#inputName').val('');
+    $('#inputFirstname').val('');
+    $('#inputAge').val('');
+    $('#inputEmail4').val('');
+    $('#inputPassword4').val('');
+    //changer le titre de "bienvenue -user-" en simple "Bienvenue"
+    $('#HomePage_Welcome').html("Bienvenue ");
   })
 });
