@@ -19,7 +19,7 @@ var MongoClient = require('mongodb').MongoClient,
 /**
 *@author Georges
 */
-/*PUT COMMENTS - Georges */
+/*get all COMMENTS - Georges */
 /*Récuperer tout les Comments*/
 router.get('/', function(req, res, next) {
 
@@ -87,8 +87,8 @@ router.get('/:id', function(req, res, next) {
  */
 /* POST  Create Comment. */
 router.post('/', function(req, res, next) {
-
-  var requiredProps = ['title', 'content', 'score', 'date'];
+console.log(req.body);
+  var requiredProps = ['idFilm','idUser','content'];
   // je verifie qu'il y ai bien des données reçues en post
   for(var i in requiredProps[i]) {
     // si les données reçue est indefinie répond que le champ est vide et coupe le script avec le return
@@ -100,13 +100,15 @@ router.post('/', function(req, res, next) {
   DB.collection('comments').insertOne(req.body, function(err, result){
     
     if(err) throw err;
-
+    
         res.json({
         result : 'Commentaire inséré',
         id : result.insertedId.toString()
-    
+        // comment: result.comment,
+        // idFilm: result.idFilm,
+        // idUser: result.idUser
       });
-console.log(res.json);
+
     });
 
   });

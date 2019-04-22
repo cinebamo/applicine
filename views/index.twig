@@ -3,14 +3,14 @@
 /* je defini lendroit ou va sinserer mon script html avec block body*/ /* ici je rentre ce que je veux inserer */
 {% block body %}
 
-<main class="d-flex flex-column"></main>
+<main class="d-flex flex-column">
 {# <!-- pour la présentation rapide du site --> #}
 <section class="jumbotron text-center">
   <div class="container">
     <h1 id="HomePage_Welcome" class="jumbotron-heading text-danger">Bienvenue </h1>
     <p class="lead text-muted">Recherchez votre film depuis notre menu de navigation ou consultez les sorties de la
-      semaine ci-dessous.<br />
-      Inscrivez-vous pour laisser vos commentaires et notation.
+      semaine ci-dessous.</p>
+      <p id="connect" class="lead text-muted">Inscrivez-vous ou connectez-vous pour laisser vos commentaires et notations.
     </p>
     <p>
       <a href="#" id="btnSubscribe" class="btn btn-outline-danger my-2">S'inscrire</a>
@@ -50,11 +50,11 @@
             <form id="profileForm">
               <div class="form-group">
                 <label for="inputName">Nom:</label>
-                <input type="text" class="form-control" id="inputName" name="name" placeholder="Baptiste">
+                <input type="text" class="form-control" id="inputName" name="name" placeholder="Moreau">
               </div>
               <div class="form-group">
                 <label for="inputFirstname">Prénom:</label>
-                <input type="text" class="form-control" id="inputFirstname" name="firstname"placeholder="Moreau">
+                <input type="text" class="form-control" id="inputFirstname" name="firstname"placeholder="Baptiste">
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
@@ -91,11 +91,11 @@
         <form id="suscribForm">
           <div class="form-group">
             <label for="name">Nom:</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Baptiste">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Moreau">
           </div>
           <div class="form-group">
             <label for="firstname">Prénom:</label>
-            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Moreau">
+            <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Baptiste">
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -183,6 +183,5 @@
 
 </main>
 
-<script src="/javascript/app.js"></script>
 {% endblock %}
 /* je defini lendroit ou va sarreter mon script html avec endblock */

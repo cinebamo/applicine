@@ -224,7 +224,8 @@ $(document).ready(function () {
 
       $('#loginSection').hide();
       $('#userLog').show();
-      $('.jumbotron-heading').append(res.user.firstname);
+      $('#HomePage_Welcome').html('Bienvenue ' + res.user.firstname);
+      $('#connect').html('Vous êtes connecté');
       $('#inputName').val(res.user.name);
       $('#inputFirstname').val(res.user.firstname);
       $('#inputAge').val(res.user.age);
@@ -244,18 +245,11 @@ $(document).ready(function () {
   // pour fermer les modal/formulaire d'inscription/login
   $('.close').on('click', function () {
 
-    cleanform();
     $('#profil').hide();
     $('#loginSection').hide();
     $('#subscribSection').hide();
 
   });
-
-  // pour se deconnecter dans icone profil
-  // $('.dropdown-menu, .dropdown-item').on('click', function () {
-
-  //   $('#userLog').hide();
-  // });
 
   //Modification du profil
 
@@ -275,8 +269,8 @@ $(document).ready(function () {
       data: JSON.stringify(data)
     }).done(function (res) {
       $('#profil').hide();
-      $('#loginSection').show().prepend('<h3>Votre compte à bien été modifié, veuillez vous reconnecter.');
-      $('.jumbotron-heading').append(data.firstname);
+      $('#HomePage_Welcome').html('Bienvenue ' + data.firstname);
+      $('#connect').html('Vous êtes connecté.');
       $('#inputName').val(data.name);
       $('#inputFirstname').val(data.firstname);
       $('#inputAge').val(data.age);
@@ -298,8 +292,8 @@ $(document).ready(function () {
       //data: JSON.stringify(data)
     }).always(function(res) {
       $('#profil').hide();
-      $('.jumbotron-heading').html('Au revoir, triste de votre départ ...');
-      $('.lead, .text-muted').html('Votre compte a bien été supprimé.');
+      $('#HomePage_Welcome').html('Au revoir, triste de votre départ ...');
+      $('#connect').html('Votre compte a bien été supprimé.');
     });
   })
 
@@ -333,7 +327,7 @@ $(document).ready(function () {
             
             $('#loginSection').hide();
             $('#userLog').show();
-            $('.jumbotron-heading').append(res.firstname);
+            $('#HomePage_Welcome').html('Bienvenue ' + res.firstname);
             $('#inputName').val(res.name);
             $('#inputFirstname').val(res.firstname);
             $('#inputAge').val(res.age);
@@ -343,17 +337,6 @@ $(document).ready(function () {
           });
   };
 
-  $('#userProfil').on('click', function(){
-
-    $('#profil').show();
-
-  });
-
-  $('.close').on('click', function(){
-
-    $('#profil').hide();
-
-  })
 
 /**
 * @author Aina
@@ -373,5 +356,7 @@ $(document).ready(function () {
     $('#inputPassword4').val('');
     //changer le titre de "bienvenue -user-" en simple "Bienvenue"
     $('#HomePage_Welcome').html("Bienvenue ");
+    // changer le paragraphe de "connecté" à "texte d'accueil"
+    $('connect').html('Inscrivez-vous ou connectez-vous pour laisser vos commentaires et notations.');
   })
 });
