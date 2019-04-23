@@ -84,6 +84,7 @@ $("#searchForm").submit(function (evt) {
 $(document).ready(function()
 {
 
+
 // Boucle de vérification si le user est connecté ou non
 //if (req.user) {
   // logged in
@@ -118,10 +119,42 @@ $(document).ready(function()
 
 
       });
+
+// Boucle de vérification si le user est connecté ou non 
+// if (req.user) { 
+  // alert('Authentification nécessaire pour la publication d un commentaire')
+// } else { 
+   // } 
+  
+   // Poster le commentaire dans la base de donnée avec ajax
+   $('#postcomment').on('submit', function(evt){ 
+   
+    evt.stopPropagation()
+    evt.preventDefault()
+    var data = {idUser:$('#profileForm').attr('action'), idFilm:$("#idFilm").val(), content:$("#comment").val()}
+    
+    //récupération url film
+   
+   
+    //Affichage du commentaire
+    var commentval = $("#comment").val();
+    
+    $( "#lescomms" ).prepend( "<div class=card-comm>"+commentval+"</div>" );
+    
+    
+    $.ajax({
+      url: '/comments/', 
+      method: 'POST',
+      data: JSON.stringify(data), 
+      dataType: "json",
+    }).done(function (reponse){
+      
+      
+      
+    });   
+
 })
 });
-
-
  /**
  * @author Mathias
  */
