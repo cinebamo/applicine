@@ -38,7 +38,7 @@ function clonageCard_last(id, video, title, summary, score, laDate) {
     var dateDate = new Date(laDate)
     var dateYear = dateDate.getFullYear()
     if (isNaN(dateYear)) {
-      console.log('Nan !')
+     
       dateYear = '-'
     }
     $(cardIDselector + " small").text(dateYear)

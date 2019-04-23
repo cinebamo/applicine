@@ -46,14 +46,14 @@ MongoClient.connect(url,
           // Chercher par titre
           DB.collection('movies').find({
             title: new RegExp(req.query.title_actor),
-            category: req.query.category
+            category: new RegExp(req.query.category)
           }).toArray(function (err, movies) {
             if (err) throw err;
             //si pas de resultat (length == 0), chercher avec l'acteur
             if (movies.length == 0) {
               DB.collection('movies').find({
                 actors: new RegExp(req.query.title_actor),
-                category: req.query.category
+                category: new RegExp(req.query.category)
               }).toArray(function (err, movies) {
                 if (err) throw err;
                 res.json(movies);
@@ -68,7 +68,7 @@ MongoClient.connect(url,
 
           // Si pas de titre/acteur, on recherche seulement avec la category
         } else {
-          DB.collection('movies').find({ category: req.query.category }).toArray(function (err, movies) {
+          DB.collection('movies').find({ category: new RegExp(req.query.category) }).toArray(function (err, movies) {
             if (err) throw err;
             res.json(movies);
           });
@@ -97,8 +97,8 @@ MongoClient.connect(url,
     });
 
     router.get('/last', function (req, res, next) {
-      var n = parseInt(req.query.n_movie,10); //converti string en Integer base 10, plus propre pour la?
-      // Chercher par titre
+      var n = parseInt(req.query.n_movie,10); //converti string en Integer base 10, plus propre pour la db?
+      
       DB.collection('movies').find({}).sort({ "date": -1 }).limit(n)
         .toArray(function (err, movies) {
           if (err) throw err;
