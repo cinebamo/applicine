@@ -76,9 +76,9 @@
                       </div>
                       <p class="text" id="comm{{i}}"></p>
                       <div class="signal">
-                        <i id="signaler{{i}}" class="fas fa-exclamation"></i>
-                        <i id="update{{i}}" class="fas fa-pencil-alt"></i>
-                        <i id="delete{{i}}" class="fas fa-trash-alt"></i>
+                        <input type="submit" value="Signaler" name="signaler"><i id="signaler{{i}}" class="fas fa-exclamation"></i></input>
+                        <input type="submit" value="Modifier" name="update"><i id="update{{i}}" class="fas fa-pencil-alt"></i></input>
+                        <input type="submit" value="Effacer" name="delete"><i id="delete{{i}}" class="fas fa-trash-alt"></i></input>
                       </div>
                     </div>
                   {% endfor %}

@@ -400,10 +400,10 @@ $(document).ready(function () {
   */
   // Update d'un commentaire
 
-  $('#').on('click', function (event) {
+  $('.signal>input:eq(2)').on('click', function (event) {
     event.preventDefault();
 //iduser à définir
-    if ($('#profileForm').attr('action') === (iduser)) {
+    if ($('#profileForm').attr('action') == (iduser)) {
 
       $('#comment').cleanform();
       $(this).parent().parent().append($('#postcomment'));
