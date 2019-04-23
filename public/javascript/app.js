@@ -1,17 +1,17 @@
-$('#categs').on('change',function(evt){
+$('#categs').on('change', function (evt) {
 
   document.getElementById('movies').innerHTML = '';
-      $.ajax({
-        url: '/search/?category='+$('#categs').val(),
-        method: 'GET'
-      }).done(function(res){
-        console.log(res);
-        $('.page').hide() ;
-        $('#movies').show() ;
-        res.forEach(function(movie) {
-          $('#movies').append('<div><div class="title">'+movie.title+'</div></div>')
-        })
-      });
+  $.ajax({
+    url: '/search/?category=' + $('#categs').val(),
+    method: 'GET'
+  }).done(function (res) {
+    console.log(res);
+    $('.page').hide();
+    $('#movies').show();
+    res.forEach(function (movie) {
+      $('#movies').append('<div><div class="title">' + movie.title + '</div></div>')
+    })
+  });
 });
 
 
@@ -33,12 +33,12 @@ function clonageCard(id, video, title, summary, score) {
   var selectorText = cardIDselector + " p"
   $(selectorTitle).text(title)
   $(selectorText).text(summary)
-  $(cardIDselector + " button:first").click(function() {
-    window.location.href = 'film/'+id;
+  $(cardIDselector + " button:first").click(function () {
+    window.location.href = 'film/' + id;
   })
-  $(cardIDselector).css('display','initial');
-  if(score >0) {
-    for(var i = 0; i<score; i++){
+  $(cardIDselector).css('display', 'initial');
+  if (score > 0) {
+    for (var i = 0; i < score; i++) {
       $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star"></i>')
     }
   }
@@ -64,7 +64,7 @@ $("#searchForm").submit(function (evt) {
       category: $("#categs").val()
     },
     success: function (reponse) {
-      
+
       //Traiter chaque carte
 
       $("#cardRow > div:not(:first) ").remove()
@@ -81,84 +81,83 @@ $("#searchForm").submit(function (evt) {
 /**
  * @author Maxime & Mathias
  */
-$(document).ready(function()
-{
-function clonecomment (id, content, date, score) {
-  //Info en reponse
-  var commentID = 'comment_' + id
-  var commentIDselector = '#' + commentID
-  //Recuperer le comment exemple "commentModel"
-  var commentClone = $("#insertcomment").clone().attr('id', commentID);
-  $("#containercomment").append(commentClone)
+$(document).ready(function () {
+  function clonecomment(id, content, date, score) {
+    //Info en reponse
+    var commentID = 'comment_' + id
+    var commentIDselector = '#' + commentID
+    //Recuperer le comment exemple "commentModel"
+    var commentClone = $("#insertcomment").clone().attr('id', commentID);
+    $("#containercomment").append(commentClone)
 
-   //Charger le contenu dans le clone
-   var selectdate = commentIDselector + " h3"
-   var selectcontent = commentIDselector + " h4"
-   var selecttext = commentIDselector + " p"
-   $(selectdate).text(date)
-   $(selectcontent).text(content)
-   $(selecttext).text(text)
-}
+    //Charger le contenu dans le clone
+    var selectdate = commentIDselector + " h3"
+    var selectcontent = commentIDselector + " h4"
+    var selecttext = commentIDselector + " p"
+    $(selectdate).text(date)
+    $(selectcontent).text(content)
+    $(selecttext).text(text)
+  }
 
-// Boucle de vérification si le user est connecté ou non 
+  // Boucle de vérification si le user est connecté ou non 
 
-  
-    // Poster le commentaire dans la base de donnée avec ajax
-    $('#postcomment').on('submit', function(evt){ 
-      evt.stopPropagation()
-      evt.preventDefault()
-      var data = {}
-      data.content = $("#comment").val()
-        
-      $.ajax({
-        url: 'comments/',
-        method: 'POST',
-        dataType: 'json',
-        data: JSON.stringify(data),
-      }).done(function (reponse){
-        
-        reponse.forEach(function (comment) {
-          clonecomment(comment['_id'], comment['content'], comment['date'], comment['score'])
-        });
-        dataType: "json"
-      });   
-})
+
+  // Poster le commentaire dans la base de donnée avec ajax
+  $('#postcomment').on('submit', function (evt) {
+    evt.stopPropagation()
+    evt.preventDefault()
+    var data = {}
+    data.content = $("#comment").val()
+
+    $.ajax({
+      url: 'comments/',
+      method: 'POST',
+      dataType: 'json',
+      data: JSON.stringify(data),
+    }).done(function (reponse) {
+
+      reponse.forEach(function (comment) {
+        clonecomment(comment['_id'], comment['content'], comment['date'], comment['score'])
+      });
+      dataType: "json"
+    });
+  })
 });
 
 
- /**
- * @author Mathias
- */
-$(document).ready(function(){
-       $.ajax({
-         url: '/comments',
-         method: 'GET'
-       }).done(function(res){
-         var x=0;
-           res.forEach(function(comment) {
-             $('#title'+x).text(comment.title);
-             var modu = comment.score%1;
-             var nbreEtoile = comment.score - modu;
-             $('#commen'+x).text(comment.content);
-             for(var y = 1; y<=nbreEtoile; y++){
-               $('#etoile'+x+'-'+y).attr('src', "../images/EtoilePleine.png");
-             }
-             if(modu==0.5){
-                $('#etoile'+x+'-'+y).attr('src', "../images/Etoile moitié.png");
-                for(var y = nbreEtoile+2; y<=6; y++){
-                  $('#etoile'+x+'-'+y).attr('src', "../images/Etoile vide.png");
-                }
-             }
-             else{
-               for(var y = nbreEtoile+1; y<=6; y++){
-                 $('#etoile'+x+'-'+y).attr('src', "../images/Etoile vide.png");
-               }
-             }
-             x++;
-           });
-       });
+/**
+* @author Mathias
+*/
+$(document).ready(function () {
+  $.ajax({
+    url: '/comments',
+    method: 'GET'
+  }).done(function (res) {
+    var x = 0;
+    res.forEach(function (comment) {
+      $('#title' + x).text(comment.title);
+      var modu = comment.score % 1;
+      var nbreEtoile = comment.score - modu;
+      $('#commen' + x).text(comment.content);
+      for (var y = 1; y <= nbreEtoile; y++) {
+        $('#etoile' + x + '-' + y).attr('src', "../images/EtoilePleine.png");
+      }
+      if (modu == 0.5) {
+        $('#etoile' + x + '-' + y).attr('src', "../images/Etoile moitié.png");
+        for (var y = nbreEtoile + 2; y <= 6; y++) {
+          $('#etoile' + x + '-' + y).attr('src', "../images/Etoile vide.png");
+        }
+      }
+      else {
+        for (var y = nbreEtoile + 1; y <= 6; y++) {
+          $('#etoile' + x + '-' + y).attr('src', "../images/Etoile vide.png");
+        }
+      }
+      x++;
+    });
+  });
 
-      });
+});
 
 /**
 * @author éric et isa
@@ -290,7 +289,7 @@ $(document).ready(function () {
       dataType: 'json',
       headers: { "content-type": "application/json" }
       //data: JSON.stringify(data)
-    }).always(function(res) {
+    }).always(function (res) {
       $('#profil').hide();
       $('#HomePage_Welcome').html('Au revoir, triste de votre départ ...');
       $('#connect').html('Votre compte a bien été supprimé.');
@@ -301,51 +300,51 @@ $(document).ready(function () {
   function cleanform() {
 
     $('input').val(null);
-
+    $('textarea').val(null);
   }
 
 
   var allCookies = document.cookie.split(';');
- 
+
   var cookies = {};
   for (var i in allCookies) {
     var str = allCookies[i];
     var strs = str.split('=');
   }
-  
-    if (strs[0] === "token") {
-      
-      // si on a cookie
-      //var token = ;
-      token = strs[1]
-      $.ajax({
-            url: '/users/' + token,
-            method: 'GET',
-            dataType: 'json',
-            headers: { "content-type": "application/json" },
-          }).done(function (res, user) {
-            
-            $('#loginSection').hide();
-            $('#userLog').show();
-            $('#HomePage_Welcome').html('Bienvenue ' + res.firstname);
-            $('#inputName').val(res.name);
-            $('#inputFirstname').val(res.firstname);
-            $('#inputAge').val(res.age);
-            $('#inputEmail4').val(res.email);
-            $('#inputPassword4').val(res.password);
-            $('#profileForm').attr('action', '/users/' + res._id);
-          });
+
+  if (strs[0] === "token") {
+
+    // si on a cookie
+    //var token = ;
+    token = strs[1]
+    $.ajax({
+      url: '/users/' + token,
+      method: 'GET',
+      dataType: 'json',
+      headers: { "content-type": "application/json" },
+    }).done(function (res, user) {
+
+      $('#loginSection').hide();
+      $('#userLog').show();
+      $('#HomePage_Welcome').html('Bienvenue ' + res.firstname);
+      $('#inputName').val(res.name);
+      $('#inputFirstname').val(res.firstname);
+      $('#inputAge').val(res.age);
+      $('#inputEmail4').val(res.email);
+      $('#inputPassword4').val(res.password);
+      $('#profileForm').attr('action', '/users/' + res._id);
+    });
   };
 
 
-/**
-* @author Aina
-*/
-  function delete_cookie( name ) {
+  /**
+  * @author Aina
+  */
+  function delete_cookie(name) {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
   //fonction pour se deconnecter via "Me deconnecter"
-  $('#userDisconect').on('click', function() {
+  $('#userDisconect').on('click', function () {
     $('#userLog').hide();
     delete_cookie('token'); //le cookie s'appelle actuelement 'token'
     // Je prefere vider aussi els informations dans el formulaire au cas ou ca reste ...
@@ -359,4 +358,59 @@ $(document).ready(function () {
     // changer le paragraphe de "connecté" à "texte d'accueil"
     $('#connect').html('Inscrivez-vous ou connectez-vous pour laisser vos commentaires et notations.');
   })
+
+  /**
+  * @author Isa & Eric
+  */
+  // Update d'un commentaire
+
+  $('#').on('click', function (event) {
+    event.preventDefault();
+
+    if ($('#profileForm').attr('action') === (iduser)) {
+
+      $('#comment').cleanform();
+      $(this).parent().parent().append($('#postcomment'));
+    }else{
+      alert("Vous n'êtes pas l'auteur de ce commentaire, vous ne pouvez pas le modifier");
+    }
+  })
+
+
+  $('#postcomment').on('submit', function (event) {
+    event.preventDefault();
+    var data = $('#comment').val();
+    $.ajax({
+      url: $('comments/:id').attr('action'),
+      method: 'PUT',
+      dataType: 'json',
+      data: JSON.stringify(data),
+    }).done(function (res) {
+
+      $(this).parent().parent().parent().closest('p').html(res.content);
+      $('#card-comm').removeChild($('#postcomment'));
+    });
+  })
+
+   /**
+  * @author Isa & Eric
+  */
+  // Delete d'un commentaire
+
+  $('#').on('click', function (event) {
+    event.preventDefault();
+
+    if ($('#profileForm').attr('action') === (iduser)) {
+
+          $.ajax({
+          url: $('comments/:id').attr('action'),
+          method: 'DELETE',
+          dataType: 'json'
+          }).always(function(){
+            $('#lescomms').removeChild(this.parentsUntil('#lescomms'));
+          })
+    }
+
 });
+});
+
