@@ -81,67 +81,43 @@ $("#searchForm").submit(function (evt) {
 /**
  * @author Maxime & Mathias
  */
-$(document).ready(function () {
-  function clonecomment(id, content, date, score) {
-    //Info en reponse
-    var commentID = 'comment_' + id
-    var commentIDselector = '#' + commentID
-    //Recuperer le comment exemple "commentModel"
-    var commentClone = $("#insertcomment").clone().attr('id', commentID);
-    $("#containercomment").append(commentClone)
+$(document).ready(function()
+{
 
-    //Charger le contenu dans le clone
-    var selectdate = commentIDselector + " h3"
-    var selectcontent = commentIDselector + " h4"
-    var selecttext = commentIDselector + " p"
-    $(selectdate).text(date)
-    $(selectcontent).text(content)
-    $(selecttext).text(text)
-  }
-
-
-  // Boucle de vérification si le user est connecté ou non
-
-
-  // Poster le commentaire dans la base de donnée avec ajax
-  $('#postcomment').on('submit', function (evt) {
-    evt.stopPropagation()
-    evt.preventDefault()
-    var data = {}
-    data.content = $("#comment").val()
-
-    $.ajax({
-      url: 'comments/',
-      method: 'POST',
-      dataType: 'json',
-      data: JSON.stringify(data),
-    }).done(function (reponse) {
-
-      reponse.forEach(function (comment) {
-        clonecomment(comment['_id'], comment['content'], comment['date'], comment['score'])
-
-// Boucle de vérification si le user est connecté ou non
-
-
+// Boucle de vérification si le user est connecté ou non 
+//if (req.user) { 
+  // logged in 
+//} else { 
+  //alert('Authentification nécessaire pour la publication d un commentaire') 
+//} 
+  
     // Poster le commentaire dans la base de donnée avec ajax
-    $('#postcomment').on('submit', function(evt){
+    $('#postcomment').on('submit', function(evt){ 
       evt.stopPropagation()
       evt.preventDefault()
-      var data = {}
-      data.content = $("#comment").val()
-
+      var data = {idUser:$('#profileForm').attr('action'), idFilm:recup, content:$("#comment").val()}
+   
+      //récupération url film
+      var urlfilm = window.location.pathname
+      var strs = urlfilm.split('/');
+      var recup = strs[2];
+     
+      //Affichage du commentaire
+      var commentval = $("#comment").val();
+      JSON.stringify(commentval),
+      $( "#lescomms" ).prepend( "<div class=card-comm>"+commentval+"</div>" );
+      
+      
       $.ajax({
-        url: 'comments/',
+        url: 'comments/', 
         method: 'POST',
-        dataType: 'json',
-        data: JSON.stringify(data),
+        data: JSON.stringify(data), 
+        dataType: "json",
       }).done(function (reponse){
-
-        reponse.forEach(function (comment) {
-          clonecomment(comment['_id'], comment['content'], comment['date'], comment['score'])
-        });
-        dataType: "json"
-      });
+        
+        
+        
+      });   
 })
 });
 
@@ -190,9 +166,7 @@ $(document).ready(function(){
 
       });
       dataType: "json"
-    });
-  })
-});
+ 
 
 /**
 * @author éric et isa
