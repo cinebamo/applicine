@@ -96,6 +96,15 @@ MongoClient.connect(url,
       }
     });
 
+    router.get('/last', function (req, res, next) {
+      var n = parseInt(req.query.n_movie,10); //converti string en Integer base 10, plus propre pour la?
+      // Chercher par titre
+      DB.collection('movies').find({}).sort({ "date": -1 }).limit(n)
+        .toArray(function (err, movies) {
+          if (err) throw err;
+          res.json(movies);
+        })
+    })
   });
 
 module.exports = function (users) {

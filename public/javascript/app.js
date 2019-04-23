@@ -369,28 +369,7 @@ $(document).ready(function () {
       $('#inputPassword4').val(res.password);
       $('#profileForm').attr('action', '/users/' + res._id);
     });
-    if (strs[0] === "token") {
 
-      // si on a cookie
-      //var token = ;
-      token = strs[1]
-      $.ajax({
-            url: '/users/' + token,
-            method: 'GET',
-            dataType: 'json',
-            headers: { "content-type": "application/json" },
-          }).done(function (res, user) {
-
-            $('#loginSection').hide();
-            $('#userLog').show();
-            $('#HomePage_Welcome').html('Bienvenue ' + res.firstname);
-            $('#inputName').val(res.name);
-            $('#inputFirstname').val(res.firstname);
-            $('#inputAge').val(res.age);
-            $('#inputEmail4').val(res.email);
-            $('#inputPassword4').val(res.password);
-            $('#profileForm').attr('action', '/users/' + res._id);
-          });
   };
 
 
