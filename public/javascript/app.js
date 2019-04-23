@@ -84,40 +84,40 @@ $("#searchForm").submit(function (evt) {
 $(document).ready(function()
 {
 
-// Boucle de vérification si le user est connecté ou non 
-//if (req.user) { 
-  // logged in 
-//} else { 
-  //alert('Authentification nécessaire pour la publication d un commentaire') 
-//} 
-  
+// Boucle de vérification si le user est connecté ou non
+//if (req.user) {
+  // logged in
+//} else {
+  //alert('Authentification nécessaire pour la publication d un commentaire')
+//}
+
     // Poster le commentaire dans la base de donnée avec ajax
-    $('#postcomment').on('submit', function(evt){ 
+    $('#postcomment').on('submit', function(evt){
       evt.stopPropagation()
       evt.preventDefault()
       var data = {idUser:$('#profileForm').attr('action'), idFilm:recup, content:$("#comment").val()}
-   
+
       //récupération url film
       var urlfilm = window.location.pathname
       var strs = urlfilm.split('/');
       var recup = strs[2];
-     
+
       //Affichage du commentaire
       var commentval = $("#comment").val();
       JSON.stringify(commentval),
       $( "#lescomms" ).prepend( "<div class=card-comm>"+commentval+"</div>" );
-      
-      
+
+
       $.ajax({
-        url: 'comments/', 
+        url: 'comments/',
         method: 'POST',
-        data: JSON.stringify(data), 
+        data: JSON.stringify(data),
         dataType: "json",
       }).done(function (reponse){
-        
-        
-        
-      });   
+
+
+
+      });
 })
 });
 
@@ -142,22 +142,22 @@ $(document).ready(function(){
              $("#signaler"+x).attr('id', caseID + '-signal');
              $("#update"+x).attr('id', caseID + '-update');
              $("#delete"+x).attr('id', caseID + '-delete');
-             $(caseID + '-titre').text(comment.title);
+             $(caseIDselector + '-titre').text(comment.title);
              var modu = comment.score%1;
              var nbreEtoile = comment.score - modu;
-             $(caseID + '-comm').text(comment.content);
+             $(caseIDselector + '-comm').text(comment.content);
              for(var y = 1; y<=nbreEtoile; y++){
-               $('#etoile '+comment._id+'-'+y).attr('src', "../images/EtoilePleine.png");
+               $(caseIDselector + '-etoile'+y).attr('src', "../images/EtoilePleine.png");
              }
              if(modu==0.5){
-                $('#etoile '+comment._id+'-'+y).attr('src', "../images/Etoile moitié.png");
+                $(caseIDselector + '-etoile'+y).attr('src', "../images/Etoile moitié.png");
                 for(var y = nbreEtoile+2; y<=6; y++){
-                  $('#etoile '+comment._id+'-'+y).attr('src', "../images/Etoile vide.png");
+                  $(caseIDselector + '-etoile'+y).attr('src', "../images/Etoile vide.png");
                 }
              }
              else{
                for(var y = nbreEtoile+1; y<=6; y++){
-                 $('#etoile '+comment._id+'-'+y).attr('src', "../images/Etoile vide.png");
+                 $(caseIDselector + '-etoile'+y).attr('src', "../images/Etoile vide.png");
                }
              }
              x++;
@@ -166,7 +166,7 @@ $(document).ready(function(){
 
       });
       dataType: "json"
- 
+
 
 /**
 * @author éric et isa
