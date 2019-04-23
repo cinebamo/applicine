@@ -6,7 +6,7 @@
 /* je defini lendroit ou va sinserer mon script html avec block body*/
             /* ici je rentre ce que je veux inserer */
 {% block body %}
- 
+
 <main class="d-flex flex-column"></main>
 <!-- pour la présentation rapide du site -->
     <section class="jumbotron text-center">
@@ -63,19 +63,29 @@
                     </p>
                 </div>
 
-            <div id ="containercomment">
-                <div class="container space-in bg-sand col-12" id="insertcomment" >
-                    <h4 class="blog-post-title">Vos derniers avis:</h4>
-                    <p class="blog-post-meta">April 13, 2019 by <a href="#" class="text-danger">Georges</a></p>
-                    <h4>un film génial, j'adore créer des vagrants!!!</h4>
-                    <p>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        ut aliquip ex ea commodo consequat."
-                    </p>
-                </div>
-            </div>
+                <section id="lescomms">
+                  {% for i in 0..2 %}
+                    <div class="card-comm">
+                      <div class="nom-note">
+                        <p id="title{{i}}">Nom</p>
+                        <div class="etoiles">
+                          {% for j in 1..5 %}
+                            <img id="etoile{{i}}-{{j}}" alt="">
+                          {% endfor %}
+                        </div>
+                      </div>
+                      <p class="text" id="commen{{i}}"></p>
+                      <div class="signal">
+                        <i id="signaler_{{i}}" class="fas fa-exclamation"></i>
+                        <i id="update_{{i}}" class="fas fa-pencil-alt"></i>
+                        <i id="delete_{{i}}" class="fas fa-trash-alt"></i>
+                      </div>
+                    </div>
+                  {% endfor %}
+                  <div class="Plus">
+                        <p>Afficher tous les commentaires</p>
+                  </div>
+                </section>
         </section>
 <!-- pour le login -->
 <section id="login" class="bg-grad-bkw">
@@ -94,29 +104,7 @@
             </section>
         </fieldset>
     </form>
-<section id="lescomms">
-  {% for i in 0..2 %}
-    <div class="card-comm">
-      <div class="nom-note">
-        <p id="title{{i}}">Nom</p>
-        <div class="etoiles">
-          {% for j in 1..5 %}
-            <img id="etoile{{i}}-{{j}}" alt="">
-          {% endfor %}
-        </div>
-      </div>
-      <p class="text"id="commen{{i}}"></p>
-      <div class="signal">
-        <i class="fas fa-exclamation"></i>
-        <i class="fas fa-pencil-alt"></i>
-        <i class="fas fa-trash-alt"></i>
-      </div>
-    </div>
-  {% endfor %}
-  <div class="Plus">
-        <p>Afficher tous les commentaires</p>
-  </div>
-</section>
+
 </main>
 
 <script src="/javascript/app.js"></script>
