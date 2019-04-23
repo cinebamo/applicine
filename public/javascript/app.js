@@ -99,7 +99,8 @@ $(document).ready(function () {
     $(selecttext).text(text)
   }
 
-  // Boucle de vérification si le user est connecté ou non 
+
+  // Boucle de vérification si le user est connecté ou non
 
 
   // Poster le commentaire dans la base de donnée avec ajax
@@ -118,45 +119,79 @@ $(document).ready(function () {
 
       reponse.forEach(function (comment) {
         clonecomment(comment['_id'], comment['content'], comment['date'], comment['score'])
+
+// Boucle de vérification si le user est connecté ou non
+
+
+    // Poster le commentaire dans la base de donnée avec ajax
+    $('#postcomment').on('submit', function(evt){
+      evt.stopPropagation()
+      evt.preventDefault()
+      var data = {}
+      data.content = $("#comment").val()
+
+      $.ajax({
+        url: 'comments/',
+        method: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(data),
+      }).done(function (reponse){
+
+        reponse.forEach(function (comment) {
+          clonecomment(comment['_id'], comment['content'], comment['date'], comment['score'])
+        });
+        dataType: "json"
+      });
+})
+});
+
+
+ /**
+ * @author Mathias
+ */
+$(document).ready(function(){
+       $.ajax({
+         url: '/comments',
+         method: 'GET'
+       }).done(function(res){
+         var x=0;
+           res.forEach(function(comment) {
+             var caseID =  comment._id;
+             var caseIDselector = '#' + caseID;
+             $("#title"+x).attr('id', caseID + '-titre');
+             $("#comm"+x).attr('id', caseID + '-comm');
+             for (var i = 0; i <= 5; i++) {
+               $("#etoile"+x+'-'+i).attr('id', caseID + '-etoile'+i);
+             }
+             $("#signaler"+x).attr('id', caseID + '-signal');
+             $("#update"+x).attr('id', caseID + '-update');
+             $("#delete"+x).attr('id', caseID + '-delete');
+             $(caseID + '-titre').text(comment.title);
+             var modu = comment.score%1;
+             var nbreEtoile = comment.score - modu;
+             $(caseID + '-comm').text(comment.content);
+             for(var y = 1; y<=nbreEtoile; y++){
+               $('#etoile '+comment._id+'-'+y).attr('src', "../images/EtoilePleine.png");
+             }
+             if(modu==0.5){
+                $('#etoile '+comment._id+'-'+y).attr('src', "../images/Etoile moitié.png");
+                for(var y = nbreEtoile+2; y<=6; y++){
+                  $('#etoile '+comment._id+'-'+y).attr('src', "../images/Etoile vide.png");
+                }
+             }
+             else{
+               for(var y = nbreEtoile+1; y<=6; y++){
+                 $('#etoile '+comment._id+'-'+y).attr('src', "../images/Etoile vide.png");
+               }
+             }
+             x++;
+           });
+       });
+
       });
       dataType: "json"
     });
   })
-});
-
-
-/**
-* @author Mathias
-*/
-$(document).ready(function () {
-  $.ajax({
-    url: '/comments',
-    method: 'GET'
-  }).done(function (res) {
-    var x = 0;
-    res.forEach(function (comment) {
-      $('#title' + x).text(comment.title);
-      var modu = comment.score % 1;
-      var nbreEtoile = comment.score - modu;
-      $('#commen' + x).text(comment.content);
-      for (var y = 1; y <= nbreEtoile; y++) {
-        $('#etoile' + x + '-' + y).attr('src', "../images/EtoilePleine.png");
-      }
-      if (modu == 0.5) {
-        $('#etoile' + x + '-' + y).attr('src', "../images/Etoile moitié.png");
-        for (var y = nbreEtoile + 2; y <= 6; y++) {
-          $('#etoile' + x + '-' + y).attr('src', "../images/Etoile vide.png");
-        }
-      }
-      else {
-        for (var y = nbreEtoile + 1; y <= 6; y++) {
-          $('#etoile' + x + '-' + y).attr('src', "../images/Etoile vide.png");
-        }
-      }
-      x++;
-    });
-  });
-
 });
 
 /**
@@ -334,6 +369,28 @@ $(document).ready(function () {
       $('#inputPassword4').val(res.password);
       $('#profileForm').attr('action', '/users/' + res._id);
     });
+    if (strs[0] === "token") {
+
+      // si on a cookie
+      //var token = ;
+      token = strs[1]
+      $.ajax({
+            url: '/users/' + token,
+            method: 'GET',
+            dataType: 'json',
+            headers: { "content-type": "application/json" },
+          }).done(function (res, user) {
+
+            $('#loginSection').hide();
+            $('#userLog').show();
+            $('#HomePage_Welcome').html('Bienvenue ' + res.firstname);
+            $('#inputName').val(res.name);
+            $('#inputFirstname').val(res.firstname);
+            $('#inputAge').val(res.age);
+            $('#inputEmail4').val(res.email);
+            $('#inputPassword4').val(res.password);
+            $('#profileForm').attr('action', '/users/' + res._id);
+          });
   };
 
 
@@ -413,4 +470,3 @@ $(document).ready(function () {
 
 });
 });
-
