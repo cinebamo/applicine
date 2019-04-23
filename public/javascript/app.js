@@ -366,7 +366,7 @@ $(document).ready(function () {
 
   $('#').on('click', function (event) {
     event.preventDefault();
-
+//iduser à définir
     if ($('#profileForm').attr('action') === (iduser)) {
 
       $('#comment').cleanform();
