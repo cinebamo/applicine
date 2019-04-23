@@ -5,15 +5,15 @@ var connectedUsers = {} ;
 var MongoClient = require('mongodb').MongoClient,
     ObjectId = require('mongodb').ObjectId,// declaration de ObjectId qui appartient a mongodb donc le signaler ainsi a nodejs
     url= "mongodb://localhost:27017/cinebamo";
-    
+
  // connexion a la db cette fonction requiert 3 parametres: une url, un objet et une function de callback
     MongoClient.connect(url,
       {useNewUrlParser:true},
       function(err, client){
         if(err) throw err;
-  
+
         var DB = client.db('cinebamo');
-  
+
         console.log('je suis connecté (module comments)');
 
 /**
@@ -22,28 +22,26 @@ var MongoClient = require('mongodb').MongoClient,
 /*get all COMMENTS - Georges */
 /*Récuperer tout les Comments*/
 router.get('/', function(req, res, next) {
-
-  DB.collection('comments').find({}).toArray(function(err, comm){
+    DB.collection('comments').find({}).sort({ "_id": -1 }).toArray(function(err, comm){
       if(err) throw err;
-  
         console.log(comm);
-  
+
         res.json(comm);
       });
-   
+
   });
 
 /*Update*/
 
 router.put('/:id', function(req, res, next) {
-  
+
   DB.collection('comments').updateOne(
 
     {_id:ObjectId(req.params.id)},
     {$set:req.body},
 
     function(err, result){
-    
+
     if(err) throw err;
 
       res.json({
@@ -58,13 +56,13 @@ router.put('/:id', function(req, res, next) {
 /*Delete*/
 
 router.delete('/:id', function(req, res, next) {
-  
+
     DB.collection('comments').deleteOne({_id: ObjectId(req.params.id)},function(err, comment){
-      
+
       if(err) throw err;
 
       res.send("Ce commentaire a été supprimé :-(");
-      
+
     });
 
 
@@ -98,9 +96,9 @@ console.log(req.body);
   }
   // si les données reçues ne sont pas indefinis alors tu les insert dans la DB et tu affiche ok + toutes les données corespondant a l'id
   DB.collection('comments').insertOne(req.body, function(err, result){
-    
+
     if(err) throw err;
-    
+
         res.json({
         result : 'Commentaire inséré',
         id : result.insertedId.toString()
