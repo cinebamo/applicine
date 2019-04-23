@@ -13,7 +13,7 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err, client) {
   
   var DB = client.db('cinebamo');
   // décommenter pour purger la collection avant import
-  // DB.collection('movies').drop();
+  DB.collection('movies').drop();
   
   var h = 'Entry;title;Director;actors;date;nbOscars;IMDBLink;posterLink;country;category'.split(';') ;
   
@@ -197,7 +197,7 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err, client) {
 
 //  console.log(JSON.stringify(datas))
     datas.forEach(function(r) {
-//      console.log(r) ;
+     
       var row = r.split(';')
       var obj = {};
       for (var i in h) {
@@ -212,6 +212,7 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err, client) {
       DB.collection('movies').insertOne(obj) ;
     
     })
-//  process.exit() ;
+ console.log('Insertion termine') ;
+ process.exit() ;
   
 });
