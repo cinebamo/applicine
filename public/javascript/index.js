@@ -5,6 +5,16 @@
 
 function clonageCard_last(id, video, title, summary, score, laDate) {
 
+  //Rejeter le clonage si on n'a pas au moins la date et le titre, ainsi qu'une date valide
+  var clonageOk = true;
+  if ((typeof title === 'undefined') || (typeof laDate === 'undefined')) {
+    clonageOk = false;
+  }
+  if (laDate.match(/^[0-9]+$/) == null) {
+    clonageOk = false;
+  }
+
+  if (clonageOk) {
     //Info en reponse
     var cardID = 'card_' + id
     var cardIDselector = '#' + cardID
@@ -18,19 +28,24 @@ function clonageCard_last(id, video, title, summary, score, laDate) {
     var selectorTitle = cardIDselector + " h3"
     var selectorText = cardIDselector + " p"
     //changer la visibilite en initial (la carte original est en "display:none")
-    $(cardIDselector).css('display','initial');
+    $(cardIDselector).css('display', 'initial');
     // Le titre
-    $(selectorTitle).text(title) 
+    $(selectorTitle).text(title)
     // Le resume 
-    $(selectorText).text(summary) 
+    console.log("summary : " + summary)
+    if (typeof summary === 'undefined') {
+      summary = "Aucun résumé"
+    }
+
+    $(selectorText).text(summary)
     // Le bouton "voir"
-    $(cardIDselector + " button:first").click(function() {
-      window.location.href = 'film/'+id;
+    $(cardIDselector + " button:first").click(function () {
+      window.location.href = 'film/' + id;
     })
     // Mettre le lien dans le href du titre
-    $(cardIDselector + " a").attr("href", 'film/'+id)
-    if(score >0) {
-      for(var i = 0; i<score; i++){
+    $(cardIDselector + " a").attr("href", 'film/' + id)
+    if (score > 0) {
+      for (var i = 0; i < score; i++) {
         $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star"></i>')
       }
     }
@@ -38,31 +53,31 @@ function clonageCard_last(id, video, title, summary, score, laDate) {
     var dateDate = new Date(laDate)
     var dateYear = dateDate.getFullYear()
     if (isNaN(dateYear)) {
-     
+
       dateYear = '-'
     }
     $(cardIDselector + " small").text(dateYear)
   }
+}
 
 //Pour charger les films sorti recamment  
-$(document).ready(function()
-{
-    // Charger les n premiers films
-    var n = 6;
+$(document).ready(function () {
+  // Charger les n premiers films
+  var n = 6;
 
-    $.get({
-        url: "search/last",
-        data: {
-          n_movie: n
-        },
-        success: function (reponse) {
-          
-          
-          $("#cardRow > div:not(:first) ").remove()
-          reponse.forEach(function (film) {
-            clonageCard_last(film['_id'], film['video'], film['title'], film['summary'], film['score'],film['date'])
-          });
-        },
-        dataType: "json"
-      })
+  $.get({
+    url: "search/last",
+    data: {
+      n_movie: n
+    },
+    success: function (reponse) {
+
+
+      $("#cardRow > div:not(:first) ").remove()
+      reponse.forEach(function (film) {
+        clonageCard_last(film['_id'], film['video'], film['title'], film['summary'], film['score'], film['date'])
+      });
+    },
+    dataType: "json"
+  })
 })
