@@ -357,6 +357,6 @@ $(document).ready(function () {
     //changer le titre de "bienvenue -user-" en simple "Bienvenue"
     $('#HomePage_Welcome').html("Bienvenue ");
     // changer le paragraphe de "connecté" à "texte d'accueil"
-    $('connect').html('Inscrivez-vous ou connectez-vous pour laisser vos commentaires et notations.');
+    $('#connect').html('Inscrivez-vous ou connectez-vous pour laisser vos commentaires et notations.');
   })
 });
