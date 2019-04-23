@@ -208,8 +208,8 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err, client) {
       obj.actors = obj.actors.split(',').map(function(l){
         return l.trim();
       })
-      console.log(JSON.stringify(obj))
-//          DB.collection('movies').insertOne(obj) ;
+      // console.log(JSON.stringify(obj))
+          DB.collection('movies').insertOne(obj) ;
     
     })
   process.exit() ;
