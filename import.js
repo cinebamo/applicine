@@ -197,7 +197,7 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err, client) {
 
 //  console.log(JSON.stringify(datas))
     datas.forEach(function(r) {
-      console.log(r) ;
+//      console.log(r) ;
       var row = r.split(';')
       var obj = {};
       for (var i in h) {
@@ -209,9 +209,9 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err, client) {
         return l.trim();
       })
       // console.log(JSON.stringify(obj))
-          DB.collection('movies').insertOne(obj) ;
+      DB.collection('movies').insertOne(obj) ;
     
     })
-  process.exit() ;
+//  process.exit() ;
   
 });
