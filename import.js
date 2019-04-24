@@ -204,15 +204,14 @@ MongoClient.connect(url, {useNewUrlParser:true}, function(err, client) {
         obj[h[i]] = row[i];
       }
       delete obj.Entry;
-      //func(JSON.stringify(obj)) ;
       obj.actors = obj.actors.split(',').map(function(l){
         return l.trim();
       })
-      // console.log(JSON.stringify(obj))
+      //console.log(JSON.stringify(obj))
       DB.collection('movies').insertOne(obj) ;
     
     })
- console.log('Insertion termine') ;
- process.exit() ;
+ 
+// process.exit() ;
   
 });
