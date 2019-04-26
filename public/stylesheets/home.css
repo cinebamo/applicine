@@ -65,10 +65,15 @@ background-color: rgba(0,0,0,0.8);
 /* pour les etoiles sous les bandes-annonces */
 .fa-star{
     padding: 5px;
+    
 }
-.fa-star:nth-of-type(-n+4){
+/* etoile de couleur jaune pour les notes*/
+.goodStar {
+  color: #FCEE14;
+}
+/* .fa-star:nth-of-type(-n+4){
    color: #FCEE14;
-}
+} */
 
 /* pour le background du formulaire d inscription */
 #subscrib form{
@@ -138,4 +143,10 @@ background-color: rgba(0,0,0,0.8);
   padding-right: 20px;
   background-color: white;
   margin: 10px;
+}
+.imgFilm {
+  max-height: 600px;
+}
+.centerText {
+  text-align: center;
 }

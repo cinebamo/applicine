@@ -113,15 +113,17 @@ router.get('/film', function(req, res, next) {
  */
 // Ajout pour page film recuperer par search
 router.get('/film/:id', function(req, res, movie) {
-  DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, m){
+  DB.collection('movies').findOne({_id: req.params.id},function(err, m){
     if(err) throw err;
-    console.log(m.title)
-    console.log(m.summary)
+    console.log(req.params.id)
+    
     // Apres obtention de l'API, changez avec id !
     //res.json({result: "ok"});
     res.render('film', {title : m.title, 
-                      summary : m.summary
+                      summary : m.summary,
+                       poster : m.posterLink
                     });
+
   });
 });
 });

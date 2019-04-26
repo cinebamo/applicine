@@ -44,11 +44,16 @@ function clonageCard_last(id, imgPoster, title, summary, score, laDate) {
     })
     // Mettre le lien dans le href du titre
     $(cardIDselector + " a").attr("href", 'film/' + id)
-    if (score > 0) {
-      for (var i = 0; i < score; i++) {
+    var note = parseFloat(score)
+    for (var i = 0; i < 10; i++) {
+      if (i < note) {
+        $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star goodStar"></i>')
+      }
+      else {
         $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star"></i>')
       }
     }
+
     //var textDate = laDate.getDate() + '/'+ laDate.getMonth() + '/' + laDate.getFullYear()
     var dateDate = new Date(laDate)
     var dateYear = dateDate.getFullYear()

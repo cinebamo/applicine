@@ -38,8 +38,13 @@ function clonageCard(id, imgPoster, title, summary, score) {
     window.location.href = 'film/' + id;
   })
   $(cardIDselector).css('display', 'initial');
-  if (score > 0) {
-    for (var i = 0; i < score; i++) {
+  var note = parseFloat(score)
+  // Note sous forme d'etoile Jaune/noire pour note sur 10
+  for (var i = 0; i < 10; i++) {
+    if (i < note) { //etoile jaune
+      $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star goodStar"></i>')
+    }
+    else { //etoile noire
       $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star"></i>')
     }
   }

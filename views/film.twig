@@ -30,14 +30,15 @@
 <!-- modele de carte pour faire apparaitre les sorties de la semaine -->
     <section id="one-movie" class="bg-grad-bkw">
             <div class="jumbotron jumbotron-fluid bg-sand col-12">
-                    <div class="container col-12">
+                    <div class="container col-12 centerText">
                         <h1 class="display-4 col-12 align">{{ title }}<!--Le retour de la Vagrant --></h1>
-                        <video class="bd-placeholder-img card-img-top" width="100" height="225" controls="controls" poster="images/.png"  allowfullscreen >
+                        <img class="bd-placeholder-img imgFilm"  src="{{ poster}} "/>
+                        <!--<video class="bd-placeholder-img card-img-top" width="100" height="225" controls="controls" poster="images/.png"  allowfullscreen > 
                             <source src="" type="video/mp4" />
                             <source src="e.webm" type="video/webm" />
                             <source src="e.ogv" type="video/ogg" />
                             Ici l'alternative à la vidéo :
-                        </video>
+                        </video>-->
                     </div>
                 </div>
                 <div class="container space-in col-12">
