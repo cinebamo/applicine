@@ -2,8 +2,8 @@
 /**
  * @author : Aina Nary
  */
-
-function clonageCard_last(id, video, title, summary, score, laDate) {
+//fichier a part pour l'acceuil
+function clonageCard_last(id, imgPoster, title, summary, score, laDate) {
 
   //Rejeter le clonage si on n'a pas au moins la date et le titre, ainsi qu'une date valide
   var clonageOk = true;
@@ -32,11 +32,11 @@ function clonageCard_last(id, video, title, summary, score, laDate) {
     // Le titre
     $(selectorTitle).text(title)
     // Le resume 
-    console.log("summary : " + summary)
+
     if (typeof summary === 'undefined') {
       summary = "Aucun résumé"
     }
-
+    $(cardIDselector + " img").attr('src',imgPoster);
     $(selectorText).text(summary)
     // Le bouton "voir"
     $(cardIDselector + " button:first").click(function () {
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
       $("#cardRow > div:not(:first) ").remove()
       reponse.forEach(function (film) {
-        clonageCard_last(film['_id'], film['video'], film['title'], film['summary'], film['score'], film['date'])
+        clonageCard_last(film['_id'], film['posterLink'], film['title'], film['summary'], film['score'], film['date'])
       });
     },
     dataType: "json"

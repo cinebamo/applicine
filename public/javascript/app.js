@@ -18,7 +18,7 @@ $('#categs').on('change', function (evt) {
 /**
  * @author Aina, Georges
  */
-function clonageCard(id, video, title, summary, score) {
+function clonageCard(id, imgPoster, title, summary, score) {
 
   //Info en reponse
   var cardID = 'card_' + id
@@ -33,6 +33,7 @@ function clonageCard(id, video, title, summary, score) {
   var selectorText = cardIDselector + " p"
   $(selectorTitle).text(title)
   $(selectorText).text(summary)
+  $(cardIDselector + " img").attr('src',imgPoster);
   $(cardIDselector + " button:first").click(function () {
     window.location.href = 'film/' + id;
   })
@@ -42,12 +43,7 @@ function clonageCard(id, video, title, summary, score) {
       $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star"></i>')
     }
   }
-  /////////////////////////////////
-  // Todo : les notes et la video
-  //
-  //
-  //Enlever le display none
-  // $(cardIDselector).removeClass("d-none")
+
 }
 
 // "searchForm" est l'ID du form
@@ -69,7 +65,7 @@ $("#searchForm").submit(function (evt) {
 
       $("#cardRow > div:not(:first) ").remove()
       reponse.forEach(function (film) {
-        clonageCard(film['_id'], film['video'], film['title'], film['summary'], film['score'])
+        clonageCard(film['_id'], film['posterLink'], film['title'], film['summary'], film['score'])
       });
     },
     dataType: "json"
