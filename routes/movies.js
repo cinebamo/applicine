@@ -16,7 +16,11 @@ var MongoClient = require('mongodb').MongoClient,
       var DB = client.db('cinebamo');
 
       console.log('je suis connecté (Module Movies)');
-
+router.get('/', function(req, res, next) {
+  DB.collection('movies').find().toArray(function(err, result){
+    res.json(result);
+  });
+});
 router.get('/:id', function(req, res, next) {
   DB.collection('movies').findOne({_id: ObjectId(req.params.id)},function(err, movie){
   if(err) throw err;
