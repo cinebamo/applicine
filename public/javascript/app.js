@@ -267,7 +267,7 @@ $(document).ready(function () {
       $('#loginSection').hide();
       $('#userLog').show();
       $('#HomePage_Welcome').html('Bienvenue ' + res.user.firstname);
-      $('#connect').html('Vous êtes connecté');
+      $('#connect').html('Vous êtes connecté !');
       $('#inputName').val(res.user.name);
       $('#inputFirstname').val(res.user.firstname);
       $('#inputAge').val(res.user.age);
@@ -312,7 +312,7 @@ $(document).ready(function () {
     }).done(function (res) {
       $('#profil').hide();
       $('#HomePage_Welcome').html('Bienvenue ' + data.firstname);
-      $('#connect').html('Vous êtes connecté.');
+      $('#connect').html('Vous êtes connecté !');
       $('#inputName').val(data.name);
       $('#inputFirstname').val(data.firstname);
       $('#inputAge').val(data.age);
