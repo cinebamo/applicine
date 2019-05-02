@@ -249,7 +249,7 @@ $(document).ready(function () {
   // au click me connecter après remplissage des inputs user/password
 
   $('#loginForm').on('submit', function (event) {
-    console.log('là login');
+    console.log('Login OK');
     event.preventDefault();
     var data = {};
     $('#loginForm [name]').map(function (i, x) {
@@ -263,7 +263,17 @@ $(document).ready(function () {
       headers: { "content-type": "application/json" },
       data: JSON.stringify(data)
     }).done(function (res, user) {
-
+      //console.log('datas: ' , res)
+      // Si User pas inscrit dans la BDD
+      if (res.result == 'nok'){
+        //console.log('Coucou');
+        //On lance un message d'aleerte 
+        alert('You do not have an account, please subscribe');
+        //On cache le LoginForm et on affiche le SubscribeForm
+        $('#loginForm').hide();
+        $('#subscribSection').show();
+        //Sinon, on procède normalement en envoyant les datas dans les inputs de la modal UserProfile
+      }else{
       $('#loginSection').hide();
       $('#userLog').show();
       $('#HomePage_Welcome').html('Bienvenue ' + res.user.firstname);
@@ -274,6 +284,7 @@ $(document).ready(function () {
       $('#inputEmail4').val(res.user.email);
       $('#inputPassword4').val(res.user.password);
       $('#profileForm').attr('action', '/users/' + res.user._id);
+      }
     });
   });
 
