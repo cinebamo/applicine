@@ -196,7 +196,10 @@ router.get('/film/:id', function(req, res, movie) {
     //res.json({result: "ok"});
     res.render('film', {title : m.title, 
                       summary : m.summary,
-                       poster : m.posterLink
+                       poster : m.posterLink,
+                     noteFilm : m.score,
+                     Actors   : m.actors.join(', '),
+                     category : m.category
                     });
 
   });

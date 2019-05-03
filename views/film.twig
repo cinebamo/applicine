@@ -48,16 +48,17 @@
             </div>
         </div>
         <div class="container space-in col-12">
-            <h2 class="blog-post-title">Synopsis:</h2>
+            
             <div>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                <p> Categorie : {{category}} </p>
+                <p> Note : {{noteFilm}}/10
+                </p>
             </div>
+            <h2 class="blog-post-title">Synopsis:</h2>
             <p>{{ summary }}
             </p>
+            <h2 class="blog-post-title">Acteurs:</h2>
+            <p> {{Actors}}</p>
         </div>
         <section id="lescomms">
             {% for i in 0..2 %}
