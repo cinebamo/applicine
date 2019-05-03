@@ -40,7 +40,7 @@ function clonageCard_last(id, imgPoster, title, summary, score, laDate) {
     $(selectorText).text(summary)
     // Le bouton "voir"
     $(cardIDselector + " button:first").click(function () {
-      window.location.href = 'film/' + id;
+      window.location.href = '/film/' + id;
     })
     // Mettre le lien dans le href du titre
     $(cardIDselector + " a").attr("href", 'film/' + id)

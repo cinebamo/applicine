@@ -18,7 +18,7 @@ $('#categs').on('change', function (evt) {
 /**
  * @author Aina, Georges
  */
-function clonageCard(id, imgPoster, title, summary, score) {
+function clonageCard(id, imgPoster, title, summary, score,laDate) {
 
   //Info en reponse
   var cardID = 'card_' + id
@@ -35,7 +35,7 @@ function clonageCard(id, imgPoster, title, summary, score) {
   $(selectorText).text(summary)
   $(cardIDselector + " img").attr('src',imgPoster);
   $(cardIDselector + " button:first").click(function () {
-    window.location.href = 'film/' + id;
+    window.location.href = '/film/' + id;
   })
   $(cardIDselector).css('display', 'initial');
   var note = parseFloat(score)
@@ -48,7 +48,13 @@ function clonageCard(id, imgPoster, title, summary, score) {
       $(cardIDselector + " .Div_cardScore").append('<i class="fas fa-star"></i>')
     }
   }
+  var dateDate = new Date(laDate)
+  var dateYear = dateDate.getFullYear()
+  if (isNaN(dateYear)) {
 
+    dateYear = '-'
+  }
+  $(cardIDselector + " small").text(dateYear)
 }
 
 // "searchForm" est l'ID du form
@@ -70,7 +76,7 @@ $("#searchForm").submit(function (evt) {
 
       $("#cardRow > div:not(:first) ").remove()
       reponse.forEach(function (film) {
-        clonageCard(film['_id'], film['posterLink'], film['title'], film['summary'], film['score'])
+        clonageCard(film['_id'], film['posterLink'], film['title'], film['summary'], film['score'],film['date'])
       });
     },
     dataType: "json"

@@ -1,66 +1,100 @@
-/**
-*@author isa
-*/
-/* je defini que mon script va s integrer dans le fichier layout.twig grace a extends*/
+/** *@author isa */ /* je defini que mon script va s integrer dans le fichier layout.twig grace a extends*/
 {% extends 'layout.twig' %}
-/* je defini lendroit ou va sinserer mon script html avec block body*/
-/* ici je rentre ce que je veux inserer */
+/* je defini lendroit ou va sinserer mon script html avec block body*/ /* ici je rentre ce que je veux inserer */
 {% block body %}
-<main class="d-flex flex-column"></main>
-<!-- pour la présentation rapide du site -->
-<section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading text-danger">Voici le film recherché:</h1>
-    </div>
-</section>
-<!-- modele de carte pour faire apparaitre les sorties de la semaine -->
-<section id="one-movie" class="bg-grad-bkw">
-    <div class="jumbotron jumbotron-fluid bg-sand col-12">
-        <div class="container col-12 centerText">
-            <h1 class="display-4 col-12 align">{{ title }}
-                <!--Le retour de la Vagrant -->
-            </h1>
-            <img class="bd-placeholder-img imgFilm" src="{{ poster}} " />
-        </div>
-    </div>
-    <div class="container space-in col-12">
-        <h2 class="blog-post-title">Synopsis:</h2>
-        <div><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i></div>
-        <p>{{ summary }}
-        </p>
-    </div>
-    <section id="lescomms">
-        {% for i in 0..2 %}
-        <div class="card-comm">
-            <p class="text" id="comm{{i}}"></p>
-            <div class="signal">
-                <input type="submit" value="Signaler" name="signaler"><i id="signaler{{i}}" class="fas fa-exclamation"></i></input>
-                <input type="submit" value="Modifier" name="update"><i id="update{{i}}" class="fas fa-pencil-alt"></i></input>
-                <input type="submit" value="Effacer" name="delete"><i id="delete{{i}}" class="fas fa-trash-alt"></i></input>
-            </div>
-        </div>
-        {% endfor %}
-        <div class="Plus">
-            <p>Afficher tous les commentaires</p>
+    <main class="d-flex flex-column"></main>
+    <!-- pour la présentation rapide du site -->
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading text-danger">Voici le film recherché:</h1>
         </div>
     </section>
-</section>
-<section id="createComment" class="bg-grad-bkw">
-    <form class="form-group" id="postcomment">
-        <fieldset>
-            <legend class="text-white">Laisser votre commentaire:</legend>
-            <div class="form-group d-flex justify-content-left pl-1">
-                <label for="exampleFormControlTextarea1"></label>
-                <textarea id="comment" name="comment" class="form-control space-around col-12" id="exampleFormControlTextarea1"
-                    rows="3" placeholder="Enter your comment"></textarea>
+    <!-- modele de carte pour faire apparaitre les sorties de la semaine -->
+    <section id="new-movie">
+        <div class="album py-5 bg-light bg-grad-bkw">
+            <div class="container">
+                <div class="row" id="cardRow">
+                    <div class="col-md-4" id="card_original" style="display:none">
+                        <div class="card mb-4 shadow-sm">
+                            <img class="bd-placeholder-img card-img-top" height="225" src="https://m.media-amazon.com/images/M/MV5BNzk1OGU2NmMtNTdhZC00NjdlLWE5YTMtZTQ0MGExZTQzOGQyXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" width="100"/>
+                            <div class="card-body">
+                                <a class="text-danger" href="#">
+                                    <h3>Title
+                                        <span class="badge badge-secondary">New</span>
+                                    </h3>
+                                </a>
+                                <div class="Div_cardScore"></div>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-danger" type="button">Voir</button>
+                                    </div>
+                                    <small class="text-muted">date</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group mb-2 pl-1">
-                <button type="submit" class="btn btn-outline-danger">Commenter</button>
+        </div>
+    </section>
+    <section id="one-movie" class="bg-grad-bkw">
+        <div class="jumbotron jumbotron-fluid bg-sand col-12">
+            <div class="container col-12 centerText">
+                <h1 class="display-4 col-12 align">{{ title }}
+                    <!--Le retour de la Vagrant -->
+                </h1>
+                <img class="bd-placeholder-img imgFilm" src="{{ poster}} "/>
             </div>
-        </fieldset>
-    </form>
-</section>
+        </div>
+        <div class="container space-in col-12">
+            <h2 class="blog-post-title">Synopsis:</h2>
+            <div>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <p>{{ summary }}
+            </p>
+        </div>
+        <section id="lescomms">
+            {% for i in 0..2 %}
+                <div class="card-comm">
+                    <p class="text" id="comm{{i}}"></p>
+                    <div class="signal">
+                        <input type="submit" value="Signaler" name="signaler">
+                            <i id="signaler{{i}}" class="fas fa-exclamation"></i>
+                        </input>
+                        <input type="submit" value="Modifier" name="update">
+                            <i id="update{{i}}" class="fas fa-pencil-alt"></i>
+                        </input>
+                        <input type="submit" value="Effacer" name="delete">
+                            <i id="delete{{i}}" class="fas fa-trash-alt"></i>
+                        </input>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="Plus">
+                <p>Afficher tous les commentaires</p>
+            </div>
+        </section>
+    </section>
+    <section id="createComment" class="bg-grad-bkw">
+        <form class="form-group" id="postcomment">
+            <fieldset>
+                <legend class="text-white">Laisser votre commentaire:</legend>
+                <div class="form-group d-flex justify-content-left pl-1">
+                    <label for="exampleFormControlTextarea1"></label>
+                    <textarea id="exampleFormControlTextarea1" name="comment" class="form-control space-around col-12" rows="3" placeholder="Enter your comment"></textarea>
+                </div>
+                <div class="form-group mb-2 pl-1">
+                    <button type="submit" class="btn btn-outline-danger">Commenter</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
 </main>
 {% endblock %}
 /* je defini lendroit ou va sarreter mon script html avec endblock */

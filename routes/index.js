@@ -105,12 +105,87 @@ router.get('/cgu', function(req, res, next) {
 //   res.render('home', {});
 // });
 /* GET film page. */
+router.get('/film/search', function (req, res, next) {
+
+  var requiredProps = ['title_actor', 'category'];
+  //Recherche utilisant le titre, la categorie et/ou acteur
+
+  console.log('title_actor :' + req.query.title_actor);
+  console.log('category :' + req.query.category);
+  console.log('title_actor taille :' + req.query.title_actor.length);
+  console.log('category taille:' + req.query.category.length);
+
+  if ((req.query.title_actor.length == 0) &&
+    (req.query.category.length == 0)) {
+    console.log('Empty search');
+    return res.send('Error : empty search');
+  }
+
+  // Search si category
+  if ((req.query.category.length > 0) && (typeof req.query.category != 'undefined')) {
+    console.log("recherche avec category");
+    //si on a un titre/acteur
+    if ((typeof req.query.title_actor != 'undefined') && (req.query.title_actor.length > 0)) {
+      // Chercher par titre
+      DB.collection('movies').find({
+        title: new RegExp(req.query.title_actor),
+        category: new RegExp(req.query.category)
+      }).toArray(function (err, movies) {
+        if (err) throw err;
+        //si pas de resultat (length == 0), chercher avec l'acteur
+        if (movies.length == 0) {
+          DB.collection('movies').find({
+            actors: new RegExp(req.query.title_actor),
+            category: new RegExp(req.query.category)
+          }).toArray(function (err, movies) {
+            if (err) throw err;
+            res.json(movies);
+          });
+
+        } else { // Recherche avec category seulement
+          var search = req.query.title_actor;
+          console.log("titre trouve avec category seulement");
+          res.json(movies);
+        }
+      });
+
+      // Si pas de titre/acteur, on recherche seulement avec la category
+    } else {
+      DB.collection('movies').find({ category: new RegExp(req.query.category) }).toArray(function (err, movies) {
+        if (err) throw err;
+        res.json(movies);
+      });
+    }
+
+    // Search sans category  
+  } else {
+    console.log("recherche sans category");
+    // Chercher par titre
+    DB.collection('movies').find({ title: new RegExp(req.query.title_actor) }).toArray(function (err, movies) {
+      if (err) throw err;
+
+      //si pas de resultat, chercher avec l'acteur
+      if (movies.length == 0) {
+        DB.collection('movies').find({ actors: new RegExp(req.query.title_actor) }).toArray(function (err, movies) {
+          if (err) throw err;
+          //console.log("acteur trouve sans category");
+          res.json(movies);
+        });
+      } else { //reponse avec le titre
+        //console.log("titre trouve sans category");
+        res.json(movies);
+      }
+    });
+  }
+});
+
 router.get('/film', function(req, res, next) {
   res.render('film', {});
 });
 /**
  * @author Aina
  */
+
 // Ajout pour page film recuperer par search
 router.get('/film/:id', function(req, res, movie) {
   DB.collection('movies').findOne({_id: req.params.id},function(err, m){
