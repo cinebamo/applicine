@@ -1,150 +1,103 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{{ title }}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel='stylesheet' href='/stylesheets/style.css'/>
-        <link rel='stylesheet' href='/stylesheets/home.css'/>
-        <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link rel="icon" href="/images/logo_cinebamo.png" type="image" sizes="32x32">
-    </head>
-    <body>
-        <header>
-            <!-- navigation -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <img src="/images/logo_cinebamo.png" alt="logo de l'entreprise Cinebamo" width="50px" height="50px">
-                <a class="navbar-brand" href="#"></i>CineBat</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home
-                            <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li id="userLog" class="nav-item dropdown" style="display:none;">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user"></i>
-                        </a> 
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a  id="userProfil" class="dropdown-item" href="#profil">Voir mon profil</a>
-                        <a  id="userDisconect"class="dropdown-item" href="#">Me déconnecter</a>
-                      </div>
+<head>
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/home.css' />
+  <link href="https://fonts.googleapis.com/css?family=Arvo:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+    crossorigin="anonymous">
+  <link rel="icon" href="/images/logo_cinebamo.png" type="image" sizes="32x32">
+</head>
 
-                    </li>
-                    <li id="" class="nav-item dropdown">
-                        {# <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Catégories
-                        </a> #}
-                        {# <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Science Fiction</a>
-                            <a class="dropdown-item" href="#">Thriller</a>
-                            <a class="dropdown-item" href="#">Horreur</a>
-                            <a class="dropdown-item" href="#">Comédie</a>
-                            <a class="dropdown-item" href="#">Enfant</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Suggestions</a>
-                        </div> #}
-                        <select id="categs" class="custom-select mr-2">
-                            <option value="" selected="selected">Categories</option>
-                            <option value="ACTION">Action</option>
-                            <option value="COMEDY">Comédie</option>
-                            <option value="CRIME">Crime</option>
-                            <option value="DRAME">Horreur</option>
-                            <option value="ROMANCE">Romance</option>
-                            <option value="SCI-FI">Science-Fiction</option>
-                            {# <option value="danse">Danse</option>
-                            <option value="epique">Epique</option>
-                            <option value="espionnage">Espionnage</option>
-                            <option value="fantastique">Fantastique</option>
-                            <option value="fantasy">Fantasy</option>
-                            <option value="guerre">Guerre</option>
-                            <option value="historique">Historique</option>
-                            <option value="horreur">Horreur</option>
-                            <option value="policier">Policier</option>
-                            <option value="road_movie">Road movie</option>
-                            <option value="romantique">Romantique</option>
-                            <option value="satirique">Satirique</option>
-                            <option value="science-fiction">Science-Fiction</option>
-                            <option value="survie">Survie</option>
-                            <option value="suspens">Suspens</option>
-                            <option value="thriller">Thriller</option>
-                            <option value="western">Western</option> #}
-                        </select>
-                        {# <div id="categs" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" value="" selected="selected">Selectionnez</a>
-                            <a class="dropdown-item" value="action">Action</a>
-                            <a class="dropdown-item" value="animation">Animation</a>
-                            <a class="dropdown-item" value="aventure">Aventure</a>
-                            <a class="dropdown-item" value="biographique">Biographique</a>
-                            <a class="dropdown-item" value="catastrophe">Catastrophe</a>
-                            <a class="dropdown-item" value="comedie">Comédie</a>
-                            <a class="dropdown-item" value="catastrophe">Catastrophe</a>
-                            <a class="dropdown-item" value="danse">Danse</a>
-                            <a class="dropdown-item" value="epique">Epique</a>
-                            <a class="dropdown-item" value="espionnage">Espionnage</a>
-                            <a class="dropdown-item" value="fantastique">Fantastique</a>
-                            <a class="dropdown-item" value="fantasy">Fantasy</a>
-                            <a class="dropdown-item" value="guerre">Guerre</a>
-                            <a class="dropdown-item" value="historique">Historique</a>
-                            <a class="dropdown-item" value="horreur">Horreur</a>
-                            <a class="dropdown-item" value="policier">Policier</a>
-                            <a class="dropdown-item" value="road_movie">Road movie</a>
-                            <a class="dropdown-item" value="romantique">Romantique</a>
-                            <a class="dropdown-item" value="satirique">Satirique</a>
-                            <a class="dropdown-item" value="science-fiction">Science-Fiction</a>
-                            <a class="dropdown-item" value="survie">Survie</a>
-                            <a class="dropdown-item" value="suspens">Suspens</a>
-                            <a class="dropdown-item" value="thriller">Thriller</a>
-                            <a class="dropdown-item" value="western">Western</a>
-                        </div> #}
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0" id="searchForm" method="get">
-                    <input id="Search_title_actor" class="form-control mr-sm-2" type="search" value="" placeholder="Titre du film ou acteurs" aria-label="Search">
-                    <button id="button_search" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
-                </form>
+<body>
+  <header>
+    <!-- navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <img src="/images/logo_cinebamo.png" alt="logo de l'entreprise Cinebamo" width="50px" height="50px">
+      <a class="navbar-brand" href="#"></i>CineBat</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home
+              <span class="sr-only">(current)</span></a>
+          </li>
+          <li id="userLog" class="nav-item dropdown" style="display:none;">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a id="userProfil" class="dropdown-item" href="#profil">Voir mon profil</a>
+              <a id="userDisconect" class="dropdown-item" href="#">Me déconnecter</a>
             </div>
-        </nav>
-      </header>
-        {# <!-- pour la présentation rapide du site --> #}
-        <section class="jumbotron text-center">
-          <div class="container">
-              <h1 class="jumbotron-heading text-danger" id="HomePage_Welcome">Bienvenue
-              </h1>
-              <p class="lead text-muted">Recherchez votre film depuis notre menu de navigation ou consultez les sorties de la
-                        semaine ci-dessous.</p>
-              <p class="lead text-muted" id="connect">Inscrivez-vous ou connectez-vous pour laisser vos commentaires et notations.
-              </p>
-              <p>
-                  <a class="btn btn-outline-danger my-2" href="#" id="btnSubscribe">S'inscrire</a>
-                  <a class="btn btn-secondary btn-outline-danger my-2" href="#" id="btnLogin">Se connecter</a>
-              </p>
-         {# <!-- pour le login --> #}
-    <section id="loginSection" class="bg-grad-bkw" style="display:none;">
-      <form id="loginForm" class="form-inline">
-        <div class="form-group mb-2 pl-1">
-          <label for="inputEmail" class="sr-only">Email</label>
-          <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email">
-        </div>
-        <div class="form-group mb-2 pl-1">
-          <label for="inputPassword2" class="sr-only">Mot de passe</label>
-          <input name="password" type="password" class="form-control" id="inputPassword2" placeholder="Mot de passe">
-        </div>
-        <div class="form-group mb-2 pl-1">
-          <button type="submit" id="login" class="btn btn-outline-danger" >Me connecter</button>
-        </div>
-        <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+
+          </li>
+          <li id="" class="nav-item dropdown">
+            <select id="categs" class="custom-select mr-2">
+              <option value="" selected="selected">Categories</option>
+              <option value="ACTION">Action</option>
+              <option value="COMEDY">Comédie</option>
+              <option value="CRIME">Crime</option>
+              <option value="DRAME">Horreur</option>
+              <option value="ROMANCE">Romance</option>
+              <option value="SCI-FI">Science-Fiction</option>
+            </select>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" id="searchForm" method="get">
+          <input id="Search_title_actor" class="form-control mr-sm-2" type="search" value="" placeholder="Titre du film ou acteurs"
+            aria-label="Search">
+          <button id="button_search" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Rechercher</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+  {#
+  <!-- pour la présentation rapide du site --> #}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading text-danger" id="HomePage_Welcome">Bienvenue
+      </h1>
+      <p class="lead text-muted">Recherchez votre film depuis notre menu de navigation ou consultez les sorties de la
+        semaine ci-dessous.</p>
+      <p class="lead text-muted" id="connect">Inscrivez-vous ou connectez-vous pour laisser vos commentaires et
+        notations.
+      </p>
+      <p>
+        <a class="btn btn-outline-danger my-2" href="#" id="btnSubscribe">S'inscrire</a>
+        <a class="btn btn-secondary btn-outline-danger my-2" href="#" id="btnLogin">Se connecter</a>
+      </p>
+      {#
+      <!-- pour le login --> #}
+      <section id="loginSection" class="bg-grad-bkw" style="display:none;">
+        <form id="loginForm" class="form-inline">
+          <div class="form-group mb-2 pl-1">
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email">
+          </div>
+          <div class="form-group mb-2 pl-1">
+            <label for="inputPassword2" class="sr-only">Mot de passe</label>
+            <input name="password" type="password" class="form-control" id="inputPassword2" placeholder="Mot de passe">
+          </div>
+          <div class="form-group mb-2 pl-1">
+            <button type="submit" id="login" class="btn btn-outline-danger">Me connecter</button>
+          </div>
+          <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-      </form>
-    </section>
-            {# pour afficher le profil #}
-    <div id="profil" class="modal" tabindex="-1" role="dialog" style="display:none;">
+        </form>
+      </section>
+      {# pour afficher le profil #}
+      <div id="profil" class="modal" tabindex="-1" role="dialog" style="display:none;">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -154,7 +107,7 @@
               </button>
             </div>
             <div class="modal-body">
-             
+
               <form id="profileForm">
                 <div class="form-group">
                   <label for="inputName">Nom:</label>
@@ -162,7 +115,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputFirstname">Prénom:</label>
-                  <input type="text" class="form-control" id="inputFirstname" name="firstname"placeholder="Baptiste">
+                  <input type="text" class="form-control" id="inputFirstname" name="firstname" placeholder="Baptiste">
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
@@ -190,12 +143,13 @@
           </div>
         </div>
       </div>
-      {# <!-- pour l'inscription --> #}
+      {#
+      <!-- pour l'inscription --> #}
       <section id="subscribSection" class="bg-grad-bkw" style="display:none;">
         <h3 class="text-white">Pour vous inscrire, veuillez compléter le formulaire ci-après:</h3>
         <button type="button" class="close ml-auto text-white" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <span aria-hidden="true">&times;</span>
+        </button>
         <form id="suscribForm">
           <div class="form-group">
             <label for="name">Nom:</label>
@@ -221,14 +175,6 @@
               <input type="password" class="form-control" id="password" name="password" placeholder="*****">
             </div>
           </div>
-          <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="gridCheck">
-              <label class="form-check-label" for="gridCheck">
-                News letter
-              </label>
-            </div>
-          </div>
           <button type="submit" id="subscribe" class="btn btn-outline-danger">M'inscrire</button>
         </form>
       </section>
@@ -236,28 +182,28 @@
       <h2 class="lead text-danger"> Cinebamo, l'appli qu'il vous faut!
       </h2>
       <p class="lead text-muted">Retrouvez nos services sur l'application mobile Cinebamo,
-                  pour être toujours informé des dernières sorties cinématographiques.
+        pour être toujours informé des dernières sorties cinématographiques.
       </p>
       <p>
-          <a class="btn btn-outline-danger my-2" href="#">Télécharger l'appliMobile</a>
+        <a class="btn btn-outline-danger my-2" href="#">Télécharger l'appliMobile</a>
       </p>
-
-
-  </div>
-
-</section>
-   
-    {% block body %}{% endblock %}
-    <footer class="text-center">
-        <small class="text-muted">
-            <a href="./cgu" class="text-danger">Mention légales</a>
-        </small>
-        <small class="text-muted">Copy Right 2019 &copy; Les BBcodeurs</small>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="/javascript/app.js"></script>
-    <script src="/javascript/index.js"></script>
+    </div>
+  </section>
+  {% block body %}{% endblock %}
+  <footer class="text-center">
+    <small class="text-muted">
+      <a href="./cgu" class="text-danger">Mentions légales</a>
+    </small>
+    <small class="text-muted">Copy Right 2019 &copy; Les BBcodeurs</small>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="/javascript/app.js"></script>
+  <script src="/javascript/index.js"></script>
 </body>
+
 </html>
