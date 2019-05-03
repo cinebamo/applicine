@@ -113,7 +113,7 @@ $(document).ready(function()
       $.ajax({
         url: 'comments/',
         method: 'POST',
-        data: JSON.stringify(data),
+        data: data,
         dataType: "json",
       }).done(function (reponse){
 
@@ -121,38 +121,38 @@ $(document).ready(function()
 
       });
 
-// Boucle de vérification si le user est connecté ou non 
-// if (req.user) { 
+// Boucle de vérification si le user est connecté ou non
+// if (req.user) {
   // alert('Authentification nécessaire pour la publication d un commentaire')
-// } else { 
-   // } 
-  
+// } else {
+   // }
+
    // Poster le commentaire dans la base de donnée avec ajax
-   $('#postcomment').on('submit', function(evt){ 
-   
+   $('#postcomment').on('submit', function(evt){
+
     evt.stopPropagation()
     evt.preventDefault()
     var data = {idUser:$('#profileForm').attr('action'), idFilm:$("#idFilm").val(), content:$("#comment").val()}
-    
+
     //récupération url film
-   
-   
+
+
     //Affichage du commentaire
     var commentval = $("#comment").val();
-    
+
     $( "#lescomms" ).prepend( "<div class=card-comm>"+commentval+"</div>" );
-    
-    
+
+
     $.ajax({
-      url: '/comments/', 
+      url: '/comments/',
       method: 'POST',
-      data: JSON.stringify(data), 
+      data: JSON.stringify(data),
       dataType: "json",
     }).done(function (reponse){
-      
-      
-      
-    });   
+
+
+
+    });
   })
 })
 });
@@ -267,7 +267,7 @@ $(document).ready(function () {
       // Si User pas inscrit dans la BDD
       if (res.result == 'nok'){
         //console.log('Coucou');
-        //On lance un message d'aleerte 
+        //On lance un message d'aleerte
         alert('You do not have an account, please subscribe');
         //On cache le LoginForm et on affiche le SubscribeForm
         $('#loginForm').hide();

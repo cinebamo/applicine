@@ -16,6 +16,7 @@ var MongoClient = require('mongodb').MongoClient,
 
         console.log('je suis connecté (module comments)');
 
+
 /**
 *@author Georges
 */
@@ -85,17 +86,24 @@ router.get('/:id', function(req, res, next) {
  */
 /* POST  Create Comment. */
 router.post('/', function(req, res, next) {
-console.log(req.body);
-  var requiredProps = ['idFilm','idUser','content'];
+  var requiredProps = [/*'idFilm',*/'content'];
   // je verifie qu'il y ai bien des données reçues en post
   for(var i in requiredProps[i]) {
     // si les données reçue est indefinie répond que le champ est vide et coupe le script avec le return
     if(typeof req.body[requiredProps[i]] == 'undefined'){
       return res.send(requiredProps[i] + 'empty');
     }
+
+
   }
+  var session = connectedUsers.get(req.cookies.token);
+  if ( ! session._id){
+    return res.send('Connexion échouée, veuillez vous connectez');
+  }
+  var commentaire = req.body ;
+  commentaire.user= session;
   // si les données reçues ne sont pas indefinis alors tu les insert dans la DB et tu affiche ok + toutes les données corespondant a l'id
-  DB.collection('comments').insertOne(req.body, function(err, result){
+  DB.collection('comments').insertOne(commentaire, function(err, result){
 
     if(err) throw err;
 

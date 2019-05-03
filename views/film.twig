@@ -21,7 +21,7 @@
                     <div class="container col-12 centerText">
                         <h1 class="display-4 col-12 align">{{ title }}<!--Le retour de la Vagrant --></h1>
                         <img class="bd-placeholder-img imgFilm"  src="{{ poster}} "/>
-                        <!--<video class="bd-placeholder-img card-img-top" width="100" height="225" controls="controls" poster="images/.png"  allowfullscreen > 
+                        <!--<video class="bd-placeholder-img card-img-top" width="100" height="225" controls="controls" poster="images/.png"  allowfullscreen >
                             <source src="" type="video/mp4" />
                             <source src="e.webm" type="video/webm" />
                             <source src="e.ogv" type="video/ogg" />
@@ -39,14 +39,6 @@
                 <section id="lescomms">
                   {% for i in 0..2 %}
                     <div class="card-comm">
-                      <div class="nom-note">
-                        <p id="title{{i}}">Nom</p>
-                        <div class="etoiles">
-                          {% for j in 1..5 %}
-                            <img id="etoile{{i}}-{{j}}" alt="">
-                          {% endfor %}
-                        </div>
-                      </div>
                       <p class="text" id="comm{{i}}"></p>
                       <div class="signal">
                         <input type="submit" value="Signaler" name="signaler"><i id="signaler{{i}}" class="fas fa-exclamation"></i></input>
